@@ -86,46 +86,71 @@
             "problemMatcher": []
         },
         {
-            "label": "ST01 Start IdentityHub Consumer",
+            "label": "ST00 Start NGINX",
+            "type": "shell",
+            "command": "scripts/startups/start-nginx.sh",
+            "problemMatcher": [
+                "$eslint-stylish"
+            ]
+        },
+        {
+            "label": "ST01 Start Issuer Service",
+            "type": "shell",
+            "command": "scripts/startups/start-issuer-service.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST20 Start IdentityHub Consumer",
             "type": "shell",
             "command": "scripts/startups/start-identityhub-consumer.sh",
             "problemMatcher": []
         },
         {
-            "label": "ST02 Start IdentityHub Provider",
+            "label": "ST21 Start IdentityHub Provider",
             "type": "shell",
             "command": "scripts/startups/start-identityhub-provider.sh",
             "problemMatcher": []
         },
         {
-            "label": "ST03 Start Connector Consumer",
+            "label": "ST30 Start Connector Consumer",
             "type": "shell",
             "command": "scripts/startups/start-connector-consumer.sh",
             "problemMatcher": []
         },
         {
-            "label": "ST04 Start Connector Provider QnA",
+            "label": "ST31 Start Connector Provider QnA",
             "type": "shell",
             "command": "scripts/startups/start-connector-provider-qna.sh",
             "problemMatcher": []
         },
         {
-            "label": "ST05 Start Connector Provider Manufacturing",
+            "label": "ST32 Start Connector Provider Manufacturing",
             "type": "shell",
             "command": "scripts/startups/start-connector-provider-manufacturing.sh",
             "problemMatcher": []
         },
         {
-            "label": "ST06 Start Provider Catalog Server",
+            "label": "ST40 Start Provider Catalog Server",
             "type": "shell",
             "command": "scripts/startups/start-catalog-server.sh",
             "problemMatcher": []
         },
         {
-            "label": "ST07 Start Issuer Service",
+            "label": "ST41 Start Standalone Federated Catalog Server",
             "type": "shell",
-            "command": "scripts/startups/start-issuer-service.sh",
+            "command": "scripts/startups/start-catalog-server.sh",
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "ST50 Start Seeding",
+            "type": "shell",
+            "command": "scripts/seed.sh"
+        },
+        {
+            "label": "ST60 Start Digital thread agent",
+            "type": "shell",
+            "command": "scripts/startups/start-digital-thread.sh",
+            "problemMatcher": []
+        },
 	]
 }
