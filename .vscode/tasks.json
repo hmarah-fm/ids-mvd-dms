@@ -1,0 +1,66 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+            "label": "B00: Gradle clean",
+            "type": "shell",
+            "command": "./gradlew clean"
+		}, 
+		{
+            "label": "B01 Gradle build identity-hub",
+            "type": "shell",
+            "command": "./gradlew  :launchers:identity-hub:build"
+        },
+		{
+            "label": "B03 Gradle build catalog-server",
+            "type": "shell",
+            "command": "./gradlew :launchers:catalog-server:build"
+        },
+        {
+            "label": "B04 Gradle build issuer service",
+            "type": "shell",
+            "command": "./gradlew :launchers:issuerservice:build"
+        },        {
+            "label": "ST01 Start IdentityHub Consumer",
+            "type": "shell",
+            "command": "scripts/startups/start-identityhub-consumer.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST02 Start IdentityHub Provider",
+            "type": "shell",
+            "command": "scripts/startups/start-identityhub-provider.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST03 Start Connector Consumer",
+            "type": "shell",
+            "command": "scripts/startups/start-connector-consumer.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST04 Start Connector Provider QnA",
+            "type": "shell",
+            "command": "scripts/startups/start-connector-provider-qna.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST05 Start Connector Provider Manufacturing",
+            "type": "shell",
+            "command": "scripts/startups/start-connector-provider-manufacturing.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST06 Start Provider Catalog Server",
+            "type": "shell",
+            "command": "scripts/startups/start-catalog-server.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST07 Start Issuer Service",
+            "type": "shell",
+            "command": "scripts/startups/start-issuer-service.sh",
+            "problemMatcher": []
+        }
+	]
+}

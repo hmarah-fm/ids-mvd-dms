@@ -19,9 +19,6 @@ plugins {
 }
 
 dependencies {
-    runtimeOnly(project(":extensions:data-plane-quote-request"))
-    runtimeOnly(project(":extensions:data-plane-quote-request-spi"))
-    runtimeOnly(project(":extensions:infraflex-quote-service"))
     runtimeOnly(project(":extensions:edc-rdf:data-plane-rdf"))//adding RDF service control plane
     runtimeOnly(project(":extensions:edc-rdf:data-plane-rdf-spi"))
 

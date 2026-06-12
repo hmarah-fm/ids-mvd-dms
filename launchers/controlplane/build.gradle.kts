@@ -22,7 +22,6 @@ dependencies {
     runtimeOnly(project(":extensions:did-example-resolver"))
     runtimeOnly(project(":extensions:dcp-impl")) // some patches/impls for DCP
     runtimeOnly(project(":extensions:catalog-node-resolver")) // to trigger the federated catalog
-    runtimeOnly(project(":extensions:control-plane-quote-request")) // use the QuoteRequest
     runtimeOnly(project(":extensions:edc-rdf:control-plane-rdf")) //use the RDF-Service
     runtimeOnly(libs.edc.bom.controlplane)
     runtimeOnly(libs.edc.api.secrets)
