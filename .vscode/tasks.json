@@ -44,6 +44,48 @@
             "dependsOrder": "sequence"
         },
         {
+            "label": "FC01 Fuseki Consumer Start Fuseki",
+            "type": "shell",
+            "command": "fuseki/consumer/start_consumer_fuseki.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "FC02 Fuseki Consumer Load Data ",
+            "type": "shell",
+            "command": "fuseki/consumer/load_data_consumer.sh fuseki/consumer/example_consumer_data.ttl",
+            "problemMatcher": []
+        },
+        {
+            "label": "FC03 Fuseki Consumer Wipe Data ",
+            "type": "shell",
+            "command": "fuseki/consumer/delete_consumer_fuseki.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "FP01 Fuseki Provider Start ",
+            "type": "shell",
+            "command": "fuseki/provider/start_provider_fuseki.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "FP02 Fuseki Provider Load Data Example",
+            "type": "shell",
+            "command": "fuseki/provider/load_data_provider.sh fuseki/provider/example_provider_data.ttl",
+            "problemMatcher": []
+        },
+        {
+            "label": "FP02 Load Fuseki Provider Load Adient Data",
+            "type": "shell",
+            "command": "fuseki/provider/load_data_provider.sh fuseki/provider/adient_data.ttl",
+            "problemMatcher": []
+        },
+        {
+            "label": "FP03 Fuseki Provider Wipe Data",
+            "type": "shell",
+            "command": "fuseki/provider/delete_provider_fuseki.sh",
+            "problemMatcher": []
+        },
+        {
             "label": "ST01 Start IdentityHub Consumer",
             "type": "shell",
             "command": "scripts/startups/start-identityhub-consumer.sh",
