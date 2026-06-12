@@ -1,0 +1,171 @@
+@prefix sc: <http://example.com/MSCOnto#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+####################################### JUST LOCATIONS FROM EXAMPLE ADIENT DATA ##################
+
+# ===== LOCATIONS =====
+
+<http://example.com/location/LOC001> a sc:Location ;
+    sc:id "LOC001" ;
+    sc:name "Slovakia" .
+
+<http://example.com/location/LOC002> a sc:Location ;
+    sc:id "LOC002" ;
+    sc:name "Paris" .
+
+<http://example.com/location/LOC003> a sc:Location ;
+    sc:id "LOC003" ;
+    sc:name "Athens" .
+
+<http://example.com/location/LOC004> a sc:Location ;
+    sc:id "LOC004" ;
+    sc:name "London" .
+
+<http://example.com/location/LOC005> a sc:Location ;
+    sc:id "LOC005" ;
+    sc:name "Berlin" .
+
+<http://example.com/location/LOC006> a sc:Location ;
+    sc:id "LOC006" ;
+    sc:name "Milan" .
+
+<http://example.com/location/LOC007> a sc:Location ;
+    sc:id "LOC007" ;
+    sc:name "Sofia" .
+
+<http://example.com/location/LOC008> a sc:Location ;
+    sc:id "LOC008" ;
+    sc:name "Budapest" .
+
+<http://example.com/location/LOC009> a sc:Location ;
+    sc:id "LOC009" ;
+    sc:name "Austria" .
+
+<http://example.com/location/LOC010> a sc:Location ;
+    sc:id "LOC010" ;
+    sc:name "Czech Republic" .
+
+<http://example.com/location/LOC011> a sc:Location ;
+    sc:id "LOC011" ;
+    sc:name "Germany" .
+
+<http://example.com/location/LOC012> a sc:Location ;
+    sc:id "LOC012" ;
+    sc:name "Italy" .
+
+<http://example.com/location/LOC013> a sc:Location ;
+    sc:id "LOC013" ;
+    sc:name "Netherlands" .
+
+<http://example.com/location/LOC014> a sc:Location ;
+    sc:id "LOC014" ;
+    sc:name "Barcelona" .
+
+# ===== LOGISTIC ROUTES =====
+
+<http://example.com/logisticroute/L2> a sc:LogisticRoute ;
+    sc:name "L2" ;
+    sc:hasStartingPoint <http://example.com/location/LOC003> ;
+    sc:hasEndingPoint <http://example.com/location/LOC004> .
+
+<http://example.com/logisticroute/L3> a sc:LogisticRoute ;
+    sc:name "L3" ;
+    sc:hasStartingPoint <http://example.com/location/LOC009> ;
+    sc:hasEndingPoint <http://example.com/location/LOC004> .
+
+<http://example.com/logisticroute/LR_SUP001_SITE001> a sc:LogisticRoute ;
+    sc:name "LR_SUP001_SITE001" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC009> ;
+    sc:hasEndingPoint <http://example.com/location/LOC001> .
+
+<http://example.com/logisticroute/LR_SUP001_SITE002> a sc:LogisticRoute ;
+    sc:name "LR_SUP001_SITE002" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC009> ;
+    sc:hasEndingPoint <http://example.com/location/LOC002> .
+
+<http://example.com/logisticroute/LR_SUP002_SITE001> a sc:LogisticRoute ;
+    sc:name "LR_SUP002_SITE001" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC010> ;
+    sc:hasEndingPoint <http://example.com/location/LOC001> .
+
+<http://example.com/logisticroute/LR_SUP002_SITE002> a sc:LogisticRoute ;
+    sc:name "LR_SUP002_SITE002" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC010> ;
+    sc:hasEndingPoint <http://example.com/location/LOC002> .
+
+<http://example.com/logisticroute/LR_SUP003_SITE003> a sc:LogisticRoute ;
+    sc:name "LR_SUP003_SITE003" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC011> ;
+    sc:hasEndingPoint <http://example.com/location/LOC003> .
+
+<http://example.com/logisticroute/LR_SUP003_SITE004> a sc:LogisticRoute ;
+    sc:name "LR_SUP003_SITE004" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC011> ;
+    sc:hasEndingPoint <http://example.com/location/LOC004> .
+
+<http://example.com/logisticroute/LR_SUP004_SITE003> a sc:LogisticRoute ;
+    sc:name "LR_SUP004_SITE003" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC012> ;
+    sc:hasEndingPoint <http://example.com/location/LOC003> .
+
+<http://example.com/logisticroute/LR_SUP004_SITE004> a sc:LogisticRoute ;
+    sc:name "LR_SUP004_SITE004" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC012> ;
+    sc:hasEndingPoint <http://example.com/location/LOC004> .
+
+<http://example.com/logisticroute/LR_SUP005_SITE005> a sc:LogisticRoute ;
+    sc:name "LR_SUP005_SITE005" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC011> ;
+    sc:hasEndingPoint <http://example.com/location/LOC005> .
+
+<http://example.com/logisticroute/LR_SUP005_SITE006> a sc:LogisticRoute ;
+    sc:name "LR_SUP005_SITE006" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC011> ;
+    sc:hasEndingPoint <http://example.com/location/LOC006> .
+
+<http://example.com/logisticroute/LR_SUP006_SITE005> a sc:LogisticRoute ;
+    sc:name "LR_SUP006_SITE005" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC013> ;
+    sc:hasEndingPoint <http://example.com/location/LOC005> .
+
+<http://example.com/logisticroute/LR_SUP006_SITE006> a sc:LogisticRoute ;
+    sc:name "LR_SUP006_SITE006" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC013> ;
+    sc:hasEndingPoint <http://example.com/location/LOC006> .
+
+<http://example.com/logisticroute/LR_SUP007_SITE003> a sc:LogisticRoute ;
+    sc:name "LR_SUP007_SITE003" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC011> ;
+    sc:hasEndingPoint <http://example.com/location/LOC003> .
+
+<http://example.com/logisticroute/LR_SUP007_SITE004> a sc:LogisticRoute ;
+    sc:name "LR_SUP007_SITE004" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC011> ;
+    sc:hasEndingPoint <http://example.com/location/LOC004> .
+
+<http://example.com/logisticroute/LR_SUP008_SITE003> a sc:LogisticRoute ;
+    sc:name "LR_SUP008_SITE003" ;
+    sc:transportationMode "fast truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC014> ;
+    sc:hasEndingPoint <http://example.com/location/LOC003> .
+
+<http://example.com/logisticroute/LR_SUP008_SITE004> a sc:LogisticRoute ;
+    sc:name "LR_SUP008_SITE004" ;
+    sc:transportationMode "slow truck" ;
+    sc:hasStartingPoint <http://example.com/location/LOC014> ;
+    sc:hasEndingPoint <http://example.com/location/LOC004> .

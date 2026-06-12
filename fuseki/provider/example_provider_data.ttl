@@ -1,0 +1,54 @@
+@prefix sc: <http://example.com/MSCOnto#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+############################################# JUST SUPPLIERS ###################
+
+<http://example.com/supplier/SUP001> a sc:Supplier ;
+    sc:id "SUP001" ;
+    sc:name "MegaFoam Inc." ;
+    sc:hasLocation <http://example.com/location/LOC009> ;
+    sc:provides <http://example.com/resource/RES001> .
+
+<http://example.com/supplier/SUP002> a sc:Supplier ;
+    sc:id "SUP002" ;
+    sc:name "ThermoFoam Ltd." ;
+    sc:hasLocation <http://example.com/location/LOC010> ;
+    sc:provides <http://example.com/resource/RES001> .
+
+<http://example.com/supplier/SUP003> a sc:Supplier ;
+    sc:id "SUP003" ;
+    sc:name "LeatherWorld GmbH" ;
+    sc:hasLocation <http://example.com/location/LOC011> ;
+    sc:provides <http://example.com/resource/RES002> .
+
+<http://example.com/supplier/SUP004> a sc:Supplier ;
+    sc:id "SUP004" ;
+    sc:name "CoveredInleather Inc." ;
+    sc:hasLocation <http://example.com/location/LOC012> ;
+    sc:provides <http://example.com/resource/RES002> .
+
+<http://example.com/supplier/SUP005> a sc:Supplier ;
+    sc:id "SUP005" ;
+    sc:name "SteelMakers MX" ;
+    sc:hasLocation <http://example.com/location/LOC011> ;
+    sc:provides <http://example.com/resource/RES003> .
+
+<http://example.com/supplier/SUP006> a sc:Supplier ;
+    sc:id "SUP006" ;
+    sc:name "MadeofSteel MX" ;
+    sc:hasLocation <http://example.com/location/LOC013> ;
+    sc:provides <http://example.com/resource/RES003> .
+
+<http://example.com/supplier/SUP007> a sc:Supplier ;
+    sc:id "SUP007" ;
+    sc:name "Adient Skilled Workforce EU" ;
+    sc:hasLocation <http://example.com/location/LOC011> ;
+    sc:provides <http://example.com/resource/RES005> .
+
+<http://example.com/supplier/SUP008> a sc:Supplier ;
+    sc:id "SUP008" ;
+    sc:name "Adient Skilled Workforce EU 2" ;
+    sc:hasLocation <http://example.com/location/LOC014> ;
+    sc:provides <http://example.com/resource/RES005> .
+

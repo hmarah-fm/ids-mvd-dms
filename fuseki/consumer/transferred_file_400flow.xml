@@ -1,0 +1,53 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:sc="http://example.com/MSCOnto#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP001">
+    <sc:provides rdf:resource="http://example.com/resource/RES001"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC009"/>
+    <sc:name>MegaFoam Inc.</sc:name>
+    <sc:id>SUP001</sc:id>
+  </sc:Supplier>
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP002">
+    <sc:provides rdf:resource="http://example.com/resource/RES001"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC010"/>
+    <sc:name>ThermoFoam Ltd.</sc:name>
+    <sc:id>SUP002</sc:id>
+  </sc:Supplier>
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP003">
+    <sc:provides rdf:resource="http://example.com/resource/RES002"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC011"/>
+    <sc:name>LeatherWorld GmbH</sc:name>
+    <sc:id>SUP003</sc:id>
+  </sc:Supplier>
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP004">
+    <sc:provides rdf:resource="http://example.com/resource/RES002"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC012"/>
+    <sc:name>CoveredInleather Inc.</sc:name>
+    <sc:id>SUP004</sc:id>
+  </sc:Supplier>
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP005">
+    <sc:provides rdf:resource="http://example.com/resource/RES003"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC011"/>
+    <sc:name>SteelMakers MX</sc:name>
+    <sc:id>SUP005</sc:id>
+  </sc:Supplier>
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP006">
+    <sc:provides rdf:resource="http://example.com/resource/RES003"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC013"/>
+    <sc:name>MadeofSteel MX</sc:name>
+    <sc:id>SUP006</sc:id>
+  </sc:Supplier>
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP007">
+    <sc:provides rdf:resource="http://example.com/resource/RES005"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC011"/>
+    <sc:name>Adient Skilled Workforce EU</sc:name>
+    <sc:id>SUP007</sc:id>
+  </sc:Supplier>
+  <sc:Supplier rdf:about="http://example.com/supplier/SUP008">
+    <sc:provides rdf:resource="http://example.com/resource/RES005"/>
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC014"/>
+    <sc:name>Adient Skilled Workforce EU 2</sc:name>
+    <sc:id>SUP008</sc:id>
+  </sc:Supplier>
+</rdf:RDF>

@@ -1,0 +1,29 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:sc="http://example.com/MSCOnto#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <rdf:Description rdf:about="http://example.com/supplier/SUP001">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC009"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/supplier/SUP002">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/supplier/SUP003">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC011"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/supplier/SUP004">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC012"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/supplier/SUP005">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC011"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/supplier/SUP006">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC013"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/supplier/SUP007">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC011"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/supplier/SUP008">
+    <sc:hasLocation rdf:resource="http://example.com/location/LOC014"/>
+  </rdf:Description>
+</rdf:RDF>
