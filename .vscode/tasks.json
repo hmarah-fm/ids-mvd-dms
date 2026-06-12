@@ -1,12 +1,12 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
+    "version": "2.0.0",
+    "tasks": [
+        {
             "label": "B00: Gradle clean",
             "type": "shell",
             "command": "./gradlew clean"
-		}, 
-		{
+        },
+        {
             "label": "B01 Gradle build identity-hub",
             "type": "shell",
             "command": "./gradlew  :launchers:identity-hub:build"
@@ -17,7 +17,7 @@
             "command": "./gradlew :launchers:runtime-embedded:build",
             "problemMatcher": []
         },
-		{
+        {
             "label": "B03 Gradle build catalog-server",
             "type": "shell",
             "command": "./gradlew :launchers:catalog-server:build"
@@ -26,14 +26,14 @@
             "label": "B04 Gradle build issuer service",
             "type": "shell",
             "command": "./gradlew :launchers:issuerservice:build"
-        },       
+        },
         {
             "label": "B05 Gradle digital thread agent",
             "type": "shell",
             "command": "./gradlew :launchers:digital-thread:build"
-        },       
+        },
         {
-            "label": "B100 Build All",
+            "label": "B99 Build All",
             "dependsOn": [
                 "B01 Gradle build identity-hub",
                 "B02 Gradle build runtime-embedded",
@@ -94,7 +94,7 @@
             ]
         },
         {
-            "label": "ST01 Start Issuer Service",
+            "label": "ST10 Start Issuer Service",
             "type": "shell",
             "command": "scripts/startups/start-issuer-service.sh",
             "problemMatcher": []
@@ -142,9 +142,10 @@
             "problemMatcher": []
         },
         {
-            "label": "ST50 Start Seeding",
+            "label": "ST50 Do Seeding",
             "type": "shell",
-            "command": "scripts/seed.sh"
+            "command": "scripts/seed.sh",
+            "problemMatcher": []
         },
         {
             "label": "ST60 Start Digital thread agent",
@@ -152,5 +153,19 @@
             "command": "scripts/startups/start-digital-thread.sh",
             "problemMatcher": []
         },
-	]
+        {
+            "label": "ST99 Start All Processes",
+            "dependsOn": [
+                "ST00 Start NGINX",
+                "ST10 Start Issuer Service",
+                "ST20 Start IdentityHub Consumer",
+                "ST21 Start IdentityHub Provider",
+                "ST30 Start Connector Consumer",
+                "ST31 Start Connector Provider QnA",
+                "ST32 Start Connector Provider Manufacturing",
+                "ST40 Start Provider Catalog Server"
+            ],
+            "dependsOrder": "parallel"
+        }
+    ]
 }

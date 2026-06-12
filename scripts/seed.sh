@@ -19,15 +19,17 @@
 
 # Seed asset/policy/contract-def data to both "provider-qna" and "provider-manufacturing"
 # TODO: definitive clean up
-if [ 0=1 ]; then
-  for url in 'http://127.0.0.1:8191' 'http://127.0.0.1:8291'
-  do
-    newman run \
-      --folder "Seed" \
-      --env-var "HOST=$url" \
-      ./deployment/postman/MVD.postman_collection.json 
-  done
-fi
+#  for url in 'http://127.0.0.1:8191' 'http://127.0.0.1:8291'
+#  do
+#    newman run \
+#      --folder "Seed" \
+#      --env-var "HOST=$url" \
+#      ./deployment/postman/MVD.postman_collection.json 
+#  done
+
+echo
+echo Starting seeding ...
+echo
 
 ## Seed linked assets to Catalog Server
 newman run \
@@ -173,6 +175,10 @@ DATA_ISSUER=$(jq -n --arg pem "$PEM_ISSUER" '{
 curl -s --location 'http://localhost:10015/api/identity/v1alpha/participants/' \
 --header 'Content-Type: application/json' \
 --data "$DATA_ISSUER"
+
+echo
+echo Seeding done
+echo
 
 # Seed participant data to the issuer service
 # newman run \

@@ -1,10 +1,9 @@
 {
   "info": {
-    "_postman_id": "c2d48870-d2bf-4270-97d2-50190b0ae91d",
+    "_postman_id": "617775a8-c960-4527-b6de-4331ddf086d3",
     "name": "EDC-Request-RDF-Service-local",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "52467612",
-    "_collection_link": "https://go.postman.co/collection/52467612-c2d48870-d2bf-4270-97d2-50190b0ae91d?source=collection_link"
+    "_exporter_id": "11764395"
   },
   "item": [
     {
