@@ -1,3 +1,49 @@
+# project specific ignores
 tomigrate
 fuseki/consumer/databases
 fuseki/provider/databases
+
+/testjava
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+bin
+build
+out/
+
+# terraform
+.terraform*
+*terraform.tfstate*
+
+# TDB2 storage files
+*.dat
+*.idn
+*.idx
+*.opt
+*.obj
+*.trn
+*.tmp
+*.bak
+*.bpt
+*.bdf
+
+# TDB2 transaction logs
+*.jrn
+*.txn
+*.jrnl
+
+# Fuseki server state
+fuseki.log
+logs/
+*/logs/
+
+# Fuseki configuration backups
+*.bak
+
+# Fuseki PID / lock files
+*.lock
+*.pid
+
+# TDB2 dataset directories (commonly named 'databases', 'tdb2', or custom)
+Data-0001/*
