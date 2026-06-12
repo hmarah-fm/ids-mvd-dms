@@ -11,6 +11,12 @@
             "type": "shell",
             "command": "./gradlew  :launchers:identity-hub:build"
         },
+        {
+            "label": "B02 Gradle build runtime-embedded",
+            "type": "shell",
+            "command": "./gradlew :launchers:runtime-embedded:build",
+            "problemMatcher": []
+        },
 		{
             "label": "B03 Gradle build catalog-server",
             "type": "shell",
@@ -20,7 +26,24 @@
             "label": "B04 Gradle build issuer service",
             "type": "shell",
             "command": "./gradlew :launchers:issuerservice:build"
-        },        {
+        },       
+        {
+            "label": "B05 Gradle digital thread agent",
+            "type": "shell",
+            "command": "./gradlew :launchers:digital-thread:build"
+        },       
+        {
+            "label": "B100 Build All",
+            "dependsOn": [
+                "B01 Gradle build identity-hub",
+                "B02 Gradle build runtime-embedded",
+                "B03 Gradle build catalog-server",
+                "B04 Gradle build issuer service",
+                "B05 Gradle digital thread agent"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
             "label": "ST01 Start IdentityHub Consumer",
             "type": "shell",
             "command": "scripts/startups/start-identityhub-consumer.sh",
