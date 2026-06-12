@@ -10,6 +10,7 @@ The DMS relies on
 - on Eclipse [EDC](https://eclipse-edc.github.io/)
 - on FM [EDC RDF extension](https://github.com/Flanders-Make-vzw/edc-rdf)
 - on FM [EDC federated catalog](https://github.com/Flanders-Make-vzw/standalone-federated-catalog)
+- on FM [Digital thread agent](https://github.com/Flanders-Make-vzw/digital-thread)
 
 It follows the IDSA recommendations and implements the IDS protocol.
 
