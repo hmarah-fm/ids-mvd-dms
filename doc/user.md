@@ -1,0 +1,27 @@
+# User documentation
+
+## Prerequisites
+
+- build the application
+  - task B99 Build All
+- import the postman collection [EDC-Request-RDF-Service-local](../deployment/postman/EDC-Request-RDF-Service-local.postman_collection.json) 
+
+## Starting the environment, consume an RDF dataset exposed to the DS
+
+Do the following steps:
+- start the provider fuseki 
+  - make sure the databases folder is writable by docker
+  - start the server: task FP01
+  - load the server: task FP02
+  - check:open a browser on http://localhost:3032
+- start the consumer fuseki
+  - start the server: task FC01
+  - check:open a browser on http://localhost:3031
+- start all edc processes (but the digital thread and standalone catalog server): task ST99
+- do the seeding task ST50
+- create the consumer/provider credentials: postman folder 000, 100, 200
+- create a provider sparql asset: postman folder 510
+- request from consumer : postman folder 520
+  - check: postman request 528 must return RDF data
+
+## Run the digital thread agent
