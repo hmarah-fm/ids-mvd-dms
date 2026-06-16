@@ -30,3 +30,6 @@ Do the following steps:
 - start the consumer postgres: task PC01
 - optional: empty the inserted datasets table: task PC03
 - start the agent: task ST60
+- check:
+  - query the inserted datasets: task PC02
+  - query the consumer triple store: consumer fuseki UI

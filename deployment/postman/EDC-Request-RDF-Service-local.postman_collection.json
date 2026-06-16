@@ -1441,7 +1441,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-sparql\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n    \"msc_dms:description\": \"Dataset from Sparql Endpoint for the RDF service for testing\",\n    \"msc_dms:name\": \"Suppliers Locations\",\n    \"msc_dms:relatedSpatialRegion\":\"Various\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n    \"edc_rdf:sparqlEndpoint\":\"http://localhost:3032/provider/query\",\n    \"edc_rdf:sparqlQuery\":\"PREFIX sc: <http://example.com/MSCOnto#> CONSTRUCT { ?supplier sc:hasLocation ?location . } WHERE { ?supplier sc:hasLocation ?location ; }\",\n    \"edc_rdf:username\":\"admin\",\n    \"edc_rdf:password\":\"mypassword\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\": \"sparqlendpoint\"\n  }\n}\n",
+                  "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-sparql\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n    \"msc_dms:description\": \"Dataset from Sparql Endpoint for the RDF service for testing\",\n    \"msc_dms:name\": \"Suppliers Locations\",\n    \"msc_dms:relatedSpatialRegion\": \"Various\",\n    \"msc_dms:aboutSupplier\": \"No supplier\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n    \"edc_rdf:sparqlEndpoint\":\"http://localhost:3032/provider/query\",\n    \"edc_rdf:sparqlQuery\":\"PREFIX sc: <http://example.com/MSCOnto#> CONSTRUCT { ?supplier sc:hasLocation ?location . } WHERE { ?supplier sc:hasLocation ?location ; }\",\n    \"edc_rdf:username\":\"admin\",\n    \"edc_rdf:password\":\"mypassword\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\": \"sparqlendpoint\"\n  }\n}\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1565,8 +1565,8 @@
                       "// get the policy id of \"asset-1\" and save it as an environment variable",
                       "if(pm.response.code < 300 && pm.response.code >= 200){",
                       "    if(pm.response.json().length > 0){",
-                      "        const dcat_datasets = pm.response.json()[0][\"dcat:catalog\"][0][\"dcat:dataset\"]",
-                      "        const rdf = dcat_datasets.find((asset) => asset[\"@id\"] == \"request-rdf-service-sparql\")",
+                      "        const rdf = pm.response.json()[0][\"dcat:catalog\"][0][\"dcat:dataset\"]",
+                      "        //const rdf = dcat_datasets.find((asset) => asset[\"@id\"] == \"request-rdf-service-sparql\")",
                       "        pm.collectionVariables.set(\"POLICY_ID_RDF\", rdf[\"odrl:hasPolicy\"][\"@id\"]);",
                       "    }",
                       "}",
@@ -1574,7 +1574,7 @@
                       "pm.test(\"Status code is >=200 and <300\", function () {",
                       "    pm.expect(pm.response.code < 300 && pm.response.code >= 200).to.be.true",
                       "});",
-                      "pm.test(\"Policy id for asset 1 is set\", function(){",
+                      "pm.test(\"Policy id for request-rdf-service-sparql is set\", function(){",
                       "    pm.expect(pm.collectionVariables.get(\"POLICY_ID_RDF\")).not.to.be.undefined",
                       "})"
                     ],
