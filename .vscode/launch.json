@@ -12,9 +12,9 @@
             "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
             "envFile": "${workspaceFolder}/deployment/assets/env/consumer_connector.env",
             "classPaths": ["${workspaceFolder}/launchers/runtime-embedded/build/libs/runtime-embedded.jar"],
-            "args": "--log-level=info",
+//            "args": "--log-level=info",
+            "args": "--log-level=debug",
             "projectName": "runtime-embedded"
-//            "args": "--log-level=debug"
         },
         {
             "type": "java",
@@ -24,9 +24,9 @@
             "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
             "envFile": "${workspaceFolder}/deployment/assets/env/provider_connector_qna.env",
             "classPaths": ["${workspaceFolder}/launchers/runtime-embedded/build/libs/runtime-embedded.jar"],
-            "args": "--log-level=info",
+            "args": "--log-level=debug",
+//            "args": "--log-level=info",
             "projectName": "runtime-embedded"
-//            "args": "--log-level=debug"
         },
     ]
 }
