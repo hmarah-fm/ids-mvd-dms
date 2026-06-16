@@ -25,3 +25,8 @@ Do the following steps:
   - check: postman request 528 must return RDF data
 
 ## Run the digital thread agent
+
+Do the following steps:
+- start the consumer postgres: task PC01
+- optional: empty the inserted datasets table: task PC03
+- start the agent: task ST60

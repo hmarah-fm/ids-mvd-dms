@@ -44,6 +44,24 @@
             "dependsOrder": "sequence"
         },
         {
+            "label": "PC01 Postgres Consumer Start Postgres",
+            "type": "shell",
+            "command": "launchers/digital-thread/postgres/start_postgres.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "PC02 Postgres Consumer Query inderted datasets",
+            "type": "shell",
+            "command": "launchers/digital-thread/postgres/query-inserted-assets.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "PC03 Postgres Consumer Delete inserted datasets",
+            "type": "shell",
+            "command": "launchers/digital-thread/postgres/delete-inserted-assets.sh",
+            "problemMatcher": []
+        },
+        {
             "label": "FC01 Fuseki Consumer Start Fuseki",
             "type": "shell",
             "command": "fuseki/consumer/start_consumer_fuseki.sh",

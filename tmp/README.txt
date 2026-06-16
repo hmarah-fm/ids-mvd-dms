@@ -1,0 +1,1 @@
+Folder used by the digital thread agent for temporary files
