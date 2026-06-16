@@ -33,6 +33,11 @@
             "command": "./gradlew :launchers:digital-thread:build"
         },
         {
+            "label": "B06 Standalone Federated Catalog server",
+            "type": "shell",
+            "command": "./gradlew :launchers:standalone-federated-catalog:standalone-catalog:build"
+        },
+        {
             "label": "B99 Build All",
             "dependsOn": [
                 "B01 Gradle build identity-hub",
@@ -169,6 +174,12 @@
             "label": "ST60 Start Digital thread agent",
             "type": "shell",
             "command": "scripts/startups/start-digital-thread.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST70 Start Standalone Federated Catalog server",
+            "type": "shell",
+            "command": "scripts/startups/start-standalone-catalog.sh",
             "problemMatcher": []
         },
         {
