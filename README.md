@@ -4,7 +4,7 @@ This repository provides a minimal setup to run the data management suite (DMS).
 
 The DMS provides a platform for sharing RDF data accross a dataspace, facilitating
 - interoperability between the DS participants
-- discoverability of the data provided by the participants.
+- discoverability of the data provided by the DS participants.
 
 The DMS relies on
 - on Eclipse [EDC](https://eclipse-edc.github.io/)
@@ -46,18 +46,26 @@ The 2 deployments:
 
 The set-up is composed of 2 participants: the `consumer` and the `provider`.
 - dataspace applications
-  - issuer service TODO: :remove
-  - nginx, used for resolving TODO
+  - issuer service TODO: :remove or not?
+  - nginx, used for resolving TODO: resolving what?
 - consumer applications
-  - keycloak, for resitering the participants
+  - fuseki triple store
+    - for adding the datasets fetched by the digital thread
+    - TODO: replace by graphdb
+  - keycloak, for regitering the participants
   - identity hub
   - connector
-  - federated catalog server
-    - with a postgres db
+  - standalone federated catalog server
+    - federating the participants registered in keycloak
   - digital thread agent
+    - with a postgres db tracking the datasets subscribed
 - provider applications
+  - fuseki triple store
+    - for exposing datasets to the dataspace
   - identity hub
   - 2 connectors
+  - catalog server
+    - federating the provider catalogs (2)
 
 
  
