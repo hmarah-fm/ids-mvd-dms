@@ -35,7 +35,7 @@
         {
             "label": "B06 Standalone Federated Catalog server",
             "type": "shell",
-            "command": "./gradlew :launchers:standalone-federated-catalog:standalone-catalog:build"
+            "command": "./gradlew :launchers:standalone-federated-catalog:build"
         },
         {
             "label": "B99 Build All",

@@ -35,7 +35,7 @@ pluginManagement {
 //     }
 // }
 
-rootProject.name = "mvd"
+rootProject.name = "fm-ids-mvd-dms"
 include(":extensions:did-example-resolver")
 include(":extensions:catalog-node-resolver")
 include(":extensions:dcp-impl")
@@ -43,7 +43,8 @@ include(":extensions:superuser-seed")
 include(":extensions:edc-rdf:control-plane-rdf")
 include(":extensions:edc-rdf:data-plane-rdf")
 include(":extensions:edc-rdf:data-plane-rdf-spi")
-include(":launchers:standalone-federated-catalog:catalog-extensions:federated-catalog-keycloak")
+include(":launchers:standalone-federated-catalog:federated-catalog-keycloak")
+//include(":launchers:standalone-federated-catalog:catalog-extensions:federated-catalog-keycloak")
 //include(":extensions:federated-catalog-keycloak")
 //include(":extensions:digital-thread")
 
@@ -58,5 +59,5 @@ include(":launchers:runtime-embedded")
 include(":launchers:catalog-server")
 // include(":launchers:sts")
 include(":launchers:issuerservice")
-include(":launchers:standalone-federated-catalog:standalone-catalog")
+include(":launchers:standalone-federated-catalog")
 include(":launchers:digital-thread")
