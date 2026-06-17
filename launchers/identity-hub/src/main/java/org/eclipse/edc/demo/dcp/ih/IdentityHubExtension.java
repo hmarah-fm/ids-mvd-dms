@@ -32,6 +32,9 @@ import static org.eclipse.edc.spi.constants.CoreConstants.JSON_LD;
 
 @Extension("DCP Demo: Core Extension for IdentityHub")
 public class IdentityHubExtension implements ServiceExtension {
+    // michel 20260617: 
+    //   - the code below in comments load signed credentials from a configured folder
+    //   - this is not longer required, as the credentials are issued by the issuer upon request from the identity hub
 
     // @Inject
     // private CredentialStore store;
