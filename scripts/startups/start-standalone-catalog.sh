@@ -1,7 +1,7 @@
 #!/bin/bash
 # Start Provider Catalog Server
 
-JAVA_PROPS=$(grep -v '^\s*$' deployment/standalone-catalog.env | grep -v '^#' | sed 's/^/-D/')
+JAVA_PROPS=$(grep -v '^\s*$' deployment/assets/env/standalone-catalog.env | grep -v '^#' | sed 's/^/-D/')
 # Just for testing purposes....
 #export KEYCLOAK_CONFIG_PATH="deployment/assets/keycloak/keycloak.properties" 
 echo $JAVA_PROPS

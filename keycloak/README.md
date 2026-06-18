@@ -34,3 +34,8 @@ This is the token:
 Look at this: https://github.com/Flanders-Make-vzw/DPP-IDS-Dataspace/issues/75
 
 
+```shell
+curl -X GET "http://localhost:5080/admin/realms/unimaas/clients" \
+  -H "Authorization: Bearer $TOKEN \
+  -H "Content-Type: application/json"
+```
