@@ -28,5 +28,17 @@
 //            "args": "--log-level=info",
             "projectName": "runtime-embedded"
         },
+        {
+            "type": "java",
+            "name": "41: Standalone federated catalog server",
+            "request": "launch",
+            "console": "internalConsole",
+            "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
+            "envFile": "${workspaceFolder}/deployment/assets/env/standalone-catalog.env",
+            "classPaths": ["${workspaceFolder}/launchers/standalone-federated-catalog/build/libs/standalone-catalog.jar"],
+            "args": "--log-level=debug",
+//            "args": "--log-level=info",
+            "projectName": "runtime-embedded"
+        },
     ]
 }
