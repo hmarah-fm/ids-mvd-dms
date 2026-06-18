@@ -14,18 +14,7 @@
 #
 #
 
-## This script must be executed when running the dataspace from IntelliJ. Neglecting to do that will render the connectors
-## inoperable!
-
-# Seed asset/policy/contract-def data to both "provider-qna" and "provider-manufacturing"
-# TODO: definitive clean up
-#  for url in 'http://127.0.0.1:8191' 'http://127.0.0.1:8291'
-#  do
-#    newman run \
-#      --folder "Seed" \
-#      --env-var "HOST=$url" \
-#      ./deployment/postman/MVD.postman_collection.json 
-#  done
+## This script must be executed when running the dataspace from vscode. 
 
 echo
 echo Starting seeding ...
@@ -90,10 +79,19 @@ SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
   "https://w3id.org/edc/v0.0.1/ns/value": "\($secret)"
 }')
 
-curl -sL -X POST http://localhost:8081/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
+echo
+echo "Set consumer secret in consumer connector"
+curl -sL -X POST http://localhost:8081/api/management/v3/secrets \
+  -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
+echo
+echo
+echo "Set consumer secret in consumer standalone catalog server"
+curl -sL -X POST http://localhost:8181/api/management/v3/secrets \
+  -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
+echo
+
 
 # add participant "provider"
-echo
 echo
 echo "Create provider participant context in IdentityHub"
 PEM_PROVIDER=$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' deployment/assets/provider_public.pem)
@@ -139,17 +137,25 @@ SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
   "https://w3id.org/edc/v0.0.1/ns/value": "\($secret)"
 }')
 
+echo
+echo "Set provider secret in provider catalog server"
 curl -sL -X POST http://localhost:8091/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
+echo
+echo
+echo "Set provider secret in provider connector qna"
 curl -sL -X POST http://localhost:8191/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
+echo
+echo
+echo "Set provider secret in provider connector manufacturing"
 curl -sL -X POST http://localhost:8291/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
+echo
 
 ###############################################
 # SEED ISSUER SERVICE
 ###############################################
 
 echo
-echo
-echo "Create dataspace issuer"
+echo "Create dataspace issuer participant"
 PEM_ISSUER=$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' deployment/assets/issuer_public.pem)
 DATA_ISSUER=$(jq -n --arg pem "$PEM_ISSUER" '{
             "roles":["admin"],
@@ -175,6 +181,7 @@ DATA_ISSUER=$(jq -n --arg pem "$PEM_ISSUER" '{
 curl -s --location 'http://localhost:10015/api/identity/v1alpha/participants/' \
 --header 'Content-Type: application/json' \
 --data "$DATA_ISSUER"
+echo
 
 echo
 echo Seeding done

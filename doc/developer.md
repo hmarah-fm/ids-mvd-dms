@@ -1,5 +1,12 @@
 # Developer documentation
 
+## identities
+
+DID: did:web:localhost%3A70B3
+- B (ten's, before last char): side (provider/consumer)
+  - 8: consumer
+  - 9: provider
+
 ## Port numbers 
 
 Port number conventions 8ABC
@@ -9,7 +16,24 @@ Port number conventions 8ABC
   - 9: provider
 - A (hundred's): application
 
+### Identity hub
+
+  - consumer hub
+    - 708*
+  - provider hub
+    - 709*
+  - roles
+    - ***0: api
+    - ***1: presentation
+    - ***2: identity
+    - ***3: did
+    - ***4: accounts
+    - ***5: version
+    - ***5: sts
+
 ### Connectors
+  - consumer standalone catalog server
+    - 818*  connector
   - consumer connector
     - 808*  connector
   - provider catalog connector 
@@ -38,10 +62,5 @@ Port number conventions 8ABC
 - 10015: identity
 - 10100: did
 
-## To discuss
-See ids-mvd-dms/extensions/edc-rdf/data-plane-rdf/src/main/java/be/flandersmake/edc/dataplane/dataaddress/rdf/RDFServiceDataPlaneExtension.java:
-- why you do not use @inject?
-- I got a run-time error: service not found
-  - I restored the inject and the error was gone
-
-
+### Keycloak
+- 5000: admin UI and management api

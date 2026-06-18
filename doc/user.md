@@ -33,3 +33,36 @@ Do the following steps:
 - check:
   - query the inserted datasets: task PC02
   - query the consumer triple store: consumer fuseki UI
+
+## Run the standalone federated catalog
+
+run the federated catalogue
+
+- start keycloak
+  - follow [procedure](https://github.com/UniMaaS-project-eu/ed-node/tree/master/tests/keycloak)
+  - docker compose up
+  - open browser on 5080
+  - add client did:web:localhost:7093 (provider)
+     - use as id the did NOT url encoded
+  - set the client secret (consumer)
+    - JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
+
+- disable the catalogue server
+- build the federated-catalog-server: ./gradlew :launchers:standalone-federated-catalog:build
+- start the federated catalogue server
+- see with seed_from_keycloak.sh (new feature: set secret in federated catalogue)
+
+Does not work
+
+
+## todo's
+
+- documentation
+  - EDC-RDF ontology present in unimaas and in edc-rdf repo
+    - TODO: which one is leading? Discard the other one
+  - property msc_dms:relatedSupplier (ontology) or msc_dms:aboutSupplier (config)
+    - TODO: align
+  - property range: object (ontology) or string (config)  
+    - TODO: align
+
+

@@ -28,12 +28,12 @@
             "command": "./gradlew :launchers:issuerservice:build"
         },
         {
-            "label": "B05 Gradle digital thread agent",
+            "label": "B05 Gradle build digital thread agent",
             "type": "shell",
             "command": "./gradlew :launchers:digital-thread:build"
         },
         {
-            "label": "B06 Standalone Federated Catalog server",
+            "label": "B06 Gradle build Standalone Federated Catalog server",
             "type": "shell",
             "command": "./gradlew :launchers:standalone-federated-catalog:build"
         },
@@ -44,7 +44,8 @@
                 "B02 Gradle build runtime-embedded",
                 "B03 Gradle build catalog-server",
                 "B04 Gradle build issuer service",
-                "B05 Gradle digital thread agent"
+                "B05 Gradle build digital thread agent",
+                "B06 Gradle build Standalone Federated Catalog server"
             ],
             "dependsOrder": "sequence"
         },
@@ -159,9 +160,9 @@
             "problemMatcher": []
         },
         {
-            "label": "ST41 Start Standalone Federated Catalog Server",
+            "label": "ST41 Start Standalone Federated Catalog server",
             "type": "shell",
-            "command": "scripts/startups/start-catalog-server.sh",
+            "command": "scripts/startups/start-standalone-catalog.sh",
             "problemMatcher": []
         },
         {
@@ -177,12 +178,6 @@
             "problemMatcher": []
         },
         {
-            "label": "ST70 Start Standalone Federated Catalog server",
-            "type": "shell",
-            "command": "scripts/startups/start-standalone-catalog.sh",
-            "problemMatcher": []
-        },
-        {
             "label": "ST99 Start All Processes",
             "dependsOn": [
                 "ST00 Start NGINX",
@@ -192,7 +187,8 @@
                 "ST30 Start Connector Consumer",
                 "ST31 Start Connector Provider QnA",
                 "ST32 Start Connector Provider Manufacturing",
-                "ST40 Start Provider Catalog Server"
+                "ST40 Start Provider Catalog Server",
+                "ST41 Start Standalone Federated Catalog server"
             ],
             "dependsOrder": "parallel"
         }
