@@ -110,6 +110,18 @@
             "problemMatcher": []
         },
         {
+            "label": "GD01 Start GraphDB",
+            "type": "shell",
+            "command": "graphdb/start.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "GD01 Stop GraphDB",
+            "type": "shell",
+            "command": "graphdb/stop.sh",
+            "problemMatcher": []
+        },
+        {
             "label": "ST00 Start NGINX",
             "type": "shell",
             "command": "scripts/startups/start-nginx.sh",

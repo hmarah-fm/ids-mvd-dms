@@ -47,3 +47,6 @@ logs/
 
 # TDB2 dataset directories (commonly named 'databases', 'tdb2', or custom)
 Data-0001/*
+
+#Graphdb data repository
+graphdb/graphdb-data/*
