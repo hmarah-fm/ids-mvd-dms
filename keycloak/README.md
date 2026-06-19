@@ -11,30 +11,33 @@ Set up downloaded from [unimaas](https://github.com/UniMaaS-project-eu/ed-node/t
     - docker compose up
   - open the admin UI
     - open browser on 5080 as admin/admin
-  - add client did:web:localhost:7093 (provider)
-     - use as id the did NOT url encoded
+  - add client did:web:localhost%3A7093 (provider)
+     - set the client ID in keycloak with host:port url encoded
+     - e.g. `did:web:localhost%3A7093`
+     - e.g. `did:web:localhost%3A9876:connector1`
   - set the client secret
     - secret JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
 
-Important: set the client ID in keycloak NOT url encoded.
+Important: 
 
 ## Retrieve the token for this client:
+
 ```sh
 RESPONSE=$(curl -X POST \
 "http://localhost:5080/realms/unimaas/protocol/openid-connect/token" \
 -H "Content-Type: application/x-www-form-urlencoded"   \
--d "grant_type=client_credentials&client_id=did:web:localhost%3A7093&client_secret=JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ")
+-d "grant_type=client_credentials&client_id=did:web:localhost%253A7093&client_secret=JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ")
 ```
 
 This is the response:
 ```json
 {
-  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI4dWp5ZWdKVkxOWUtBbW9FYmE0OVlGMVQ2MXpQcEViQWl5X202Ym1XRUZjIn0.eyJleHAiOjE3ODE3ODYxOTUsImlhdCI6MTc4MTc4NTg5NSwianRpIjoiMmVhNjkwNTgtZDM0Zi00Y2I1LTg4NzgtM2Q2ZDZmNzZhZmJmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDgwL3JlYWxtcy91bmltYWFzIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImQyODVlMzFkLTJkMWItNDdjZS1iNTNjLWY3ZjRlYjVhZTcxNSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImRpZDp3ZWI6bG9jYWxob3N0OjcwOTMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy11bmltYWFzIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJjbGllbnRIb3N0IjoiMTcyLjE5LjAuMSIsInByZWZlcnJlZF91c2VybmFtZSI6InNlcnZpY2UtYWNjb3VudC1kaWQ6d2ViOmxvY2FsaG9zdDo3MDkzIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4xOS4wLjEiLCJjbGllbnRfaWQiOiJkaWQ6d2ViOmxvY2FsaG9zdDo3MDkzIn0.fm9vExDzUIS324wZjWOrzv5uh-1WWwVsCdL5C2KZ7Xm1srUAE_EINqn1mwo3VX2lAbd9YwBM7cIV1gF4jZZuX_7FpjhrujbxA2s8YQzXVo4yrVN0qXApNxBX4g9EEqxyXyQEM_hWGTzut8vSKfx2iPcaiWTcqTB8UXOliazJ6qg7wHhzYyzYRBiD5nzITcVRFaREMKLEMn2aZtPJQoMlcrmL04v8g80HIx9lc3PEitW_jwEZLKaaOHJeZlorK4eIvvlkpD9Z1iJ-liH6IXxY3aCJM_1xr_8spAv-KVG3ZsrX6qiqbQ0ASWg9t7cKY0dI0kPE-u6u2-Znl44Rl2X88w",
-  "expires_in": 300,
-  "refresh_expires_in": 0,
-  "token_type": "Bearer",
-  "not-before-policy": 0,
-  "scope": "profile email"
+    "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI4dWp5ZWdKVkxOWUtBbW9FYmE0OVlGMVQ2MXpQcEViQWl5X202Ym1XRUZjIn0.eyJleHAiOjE3ODE4Nzc5MjUsImlhdCI6MTc4MTg3NzYyNSwianRpIjoiN2UzOGI1MTktNjU5Zi00MGJhLThlYzEtMzEwNzc3MzZkYTUxIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDgwL3JlYWxtcy91bmltYWFzIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImQyODVlMzFkLTJkMWItNDdjZS1iNTNjLWY3ZjRlYjVhZTcxNSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImRpZDp3ZWI6bG9jYWxob3N0JTNBNzA5MyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJkZWZhdWx0LXJvbGVzLXVuaW1hYXMiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImNsaWVudEhvc3QiOiIxNzIuMTkuMC4xIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LWRpZDp3ZWI6bG9jYWxob3N0JTNhNzA5MyIsImNsaWVudEFkZHJlc3MiOiIxNzIuMTkuMC4xIiwiY2xpZW50X2lkIjoiZGlkOndlYjpsb2NhbGhvc3QlM0E3MDkzIn0.NOPekOfawo4MROwqEW7GyDwxTjhOK_OY-zp0ScRdOm8hVem4t4PcWqW16wFX4Qv294LCcJHyWX-Ov3S53T-IvmxQcC6fV_63XvKAKEeU-_QtuVS_hIV-k-4f8zh2gvWczN6884fOJKi8r-yKF1pWyPIh9phM6TAut0-APXtjgd8-_eBiXGfc_upC7KkmnHRyZ9paHyyLI2znFuafyM9A1HL_5gh3cBQxFuy8vnEXimKRebjtBibWZv1I05uUWntAuWs92eyudU32dEOO6s8OeFtZmnytXOrjZs_DEP9MvmSquMXZ24IbOmd-cpecUJE7A47IENqZz_6vwfhE87UCqg",
+    "expires_in": 300,
+    "refresh_expires_in": 0,
+    "token_type": "Bearer",
+    "not-before-policy": 0,
+    "scope": "profile email"
 }
 ```
 
