@@ -42,27 +42,16 @@ run the federated catalogue
   - follow [procedure](https://github.com/UniMaaS-project-eu/ed-node/tree/master/tests/keycloak)
   - docker compose up
   - open browser on 5080
-  - add client did:web:localhost:7093 (provider)
-     - use as id the did NOT url encoded
+  - add client did:web:localhost%3A7093 (provider)
   - set the client secret (consumer)
     - JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
-
-- disable the catalogue server
-- build the federated-catalog-server: ./gradlew :launchers:standalone-federated-catalog:build
-- start the federated catalogue server
-- see with seed_from_keycloak.sh (new feature: set secret in federated catalogue)
-
-Does not work
-
 
 ## todo's
 
 - documentation
   - EDC-RDF ontology present in unimaas and in edc-rdf repo
     - TODO: which one is leading? Discard the other one
-  - property msc_dms:relatedSupplier (ontology) or msc_dms:aboutSupplier (config)
-    - TODO: align
-  - property range: object (ontology) or string (config)  
+  - property msc_dms:relatedSupplier (ontology) or   - property range: object (ontology) or string (config)  
     - TODO: align
 
 
