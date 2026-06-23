@@ -47,7 +47,7 @@ DATA_CONSUMER=$(jq -n --arg pem "$PEM_CONSUMER" '{
              },
              {
                 "type": "ProtocolEndpoint",
-                "serviceEndpoint": "http://localhost:8082/api/dsp",
+                "serviceEndpoint": "http://localhost:8182/api/dsp",
                 "id": "consumer-dsp"
              }
            ],
