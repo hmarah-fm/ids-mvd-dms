@@ -110,7 +110,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
               },
               {
                 "type": "ProtocolEndpoint",
-                "serviceEndpoint": "http://localhost:8092/api/dsp",
+                "serviceEndpoint": "http://localhost:8192/api/dsp",
                 "id": "provider-catalogserver-dsp"
               }
             ],
