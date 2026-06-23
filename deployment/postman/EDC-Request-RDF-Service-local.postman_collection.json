@@ -1799,7 +1799,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\",\n            {\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n    ],\n    \"assetId\": \"request-rdf-service-sparql\",\n    \"counterPartyAddress\":  \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"RDFSink\",\n        \"edc_rdf:targetURL\": \"scripts/fuseki/consumer/\",\n        \"edc_rdf:store\":\"file\",\n        \"edc_rdf:fileName\":\"transferred_file_500flow\",\n        \"edc_rdf:serialization\":\"RDF/XML\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"RDFSink-PUSH\"\n}",
+                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\",\n            {\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n    ],\n    \"assetId\": \"request-rdf-service-sparql\",\n    \"counterPartyAddress\":  \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"RDFSink\",\n        \"edc_rdf:targetURL\": \"tmp/\",\n        \"edc_rdf:store\":\"file\",\n        \"edc_rdf:fileName\":\"transferred_file_500flow\",\n        \"edc_rdf:serialization\":\"RDF/XML\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"RDFSink-PUSH\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1857,7 +1857,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\",\n            {\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n    ],\n    \"assetId\": \"request-rdf-service-sparql\",\n    \"counterPartyAddress\":  \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"RDFSink\",\n        \"edc_rdf:targetURL\": \"http://localhost:3031/consumer/data\",\n        \"edc_rdf:graph\": \"default\",\n        \"edc_rdf:username\": \"admin\",\n        \"edc_rdf:password\": \"mypassword\",\n        \"edc_rdf:store\":\"sparql\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"RDFSink-PUSH\"\n}",
+                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\",\n            {\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n    ],\n    \"assetId\": \"request-rdf-service-sparql\",\n    \"counterPartyAddress\":  \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"RDFSink\",\n        \"edc_rdf:targetURL\": \"http://localhost:3031/consumer/data\",\n        \"edc_rdf:graph\": \"default\",\n        \"edc_rdf:username\": \"admin\",\n        \"edc_rdf:password\": \"mypassword\",\n        \"edc_rdf:store\":\"sparql\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"RDFSink-PULL\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1886,7 +1886,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"CONTRACT_QuoteRequest_AGREEMENT_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"CONTRACT_AGREEMENT_ID_RDF\")){",
                       "    throw new Error('Contract Agreement ID is not yet available, please execute requests \"Initiate Negotiation and Get Contract Negotiation\" first!');",
                       "}"
                     ],
@@ -2099,7 +2099,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"TRANSFER_Quote_Request_PROCESS_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"TRANSFER_PROCESS_ID_RDF\")){",
                       "    throw new Error('Transfer Process ID is not yet available, please execute request \"Get Transfer Processes\" first!');",
                       "}"
                     ],
@@ -2148,7 +2148,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"QUOTE_AUTHORIZATION_flash\")){",
+                      "if(!pm.collectionVariables.has(\"QUOTE_AUTHORIZATION_RDF\")){",
                       "    throw new Error(' The authorization token is not yet available, please execute request \"Get EDR DataAddress for TransferId\" first!');",
                       "}"
                     ],
@@ -2215,6 +2215,137 @@
               "response": []
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "600-Standalone-Federated-Catalog-Server",
+      "item": [
+        {
+          "name": "601-Access-Catalog-Server-private",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// get the policy id of \"asset-1\" and save it as an environment variable",
+                  "if(pm.response.code < 300 && pm.response.code >= 200){",
+                  "    if(pm.response.json().length > 0){",
+                  "        const rdf = pm.response.json()[0][\"dcat:catalog\"][0][\"dcat:dataset\"]",
+                  "        //const rdf = dcat_datasets.find((asset) => asset[\"@id\"] == \"request-rdf-service-sparql\")",
+                  "        pm.collectionVariables.set(\"POLICY_ID_RDF\", rdf[\"odrl:hasPolicy\"][\"@id\"]);",
+                  "    }",
+                  "}",
+                  "",
+                  "pm.test(\"Status code is >=200 and <300\", function () {",
+                  "    pm.expect(pm.response.code < 300 && pm.response.code >= 200).to.be.true",
+                  "});",
+                  "pm.test(\"Policy id for request-rdf-service-sparql is set\", function(){",
+                  "    pm.expect(pm.collectionVariables.get(\"POLICY_ID_RDF\")).not.to.be.undefined",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"QuerySpec\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{STANDALONE_CATALOG_API_CATALOG}}/v1alpha/catalog/query",
+              "host": [
+                "{{STANDALONE_CATALOG_API_CATALOG}}"
+              ],
+              "path": [
+                "v1alpha",
+                "catalog",
+                "query"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "602-Consumer-Access-Provider-Federated-Catalog",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7093\",\r\n  \"counterPartyAddress\": \"http://localhost:8092/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CONSUMER_URL}}/api/management/v3/catalog/request",
+              "host": [
+                "{{CONSUMER_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "catalog",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "603-Consumer-Access-Provider-Connector-Catalog",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7093\",\r\n  \"counterPartyAddress\": \"http://localhost:8192/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CONSUMER_URL}}/api/management/v3/catalog/request",
+              "host": [
+                "{{CONSUMER_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "catalog",
+                "request"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
@@ -2300,38 +2431,6 @@
       "value": ""
     },
     {
-      "key": "TRANSFER_Quote_Request_PROCESS_ID_gearbox",
-      "value": ""
-    },
-    {
-      "key": "TRANSFER_Quote_Request_PROCESS_ID_flash",
-      "value": ""
-    },
-    {
-      "key": "QUOTE_AUTHORIZATION_gearbox",
-      "value": ""
-    },
-    {
-      "key": "CONTRACT_QuoteRequest_AGREEMENT_ID_gearbox",
-      "value": ""
-    },
-    {
-      "key": "QUOTE_AUTHORIZATION_flash",
-      "value": ""
-    },
-    {
-      "key": "CONTRACT_QuoteRequest_AGREEMENT_ID_flash",
-      "value": ""
-    },
-    {
-      "key": "CONTRACT_NEGOTIATION_ID_flash",
-      "value": ""
-    },
-    {
-      "key": "CONTRACT_NEGOTIATION_ID_gearbox",
-      "value": ""
-    },
-    {
       "key": "AUTHORIZATION",
       "value": ""
     },
@@ -2405,6 +2504,10 @@
     },
     {
       "key": "QUOTE_AUTHORIZATION_RDF",
+      "value": ""
+    },
+    {
+      "key": "STANDALONE_CATALOG_API_CATALOG",
       "value": ""
     }
   ]
