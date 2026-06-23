@@ -47,7 +47,7 @@ DATA_CONSUMER=$(jq -n --arg pem "$PEM_CONSUMER" '{
              },
              {
                 "type": "ProtocolEndpoint",
-                "serviceEndpoint": "http://localhost:8182/api/dsp",
+                "serviceEndpoint": "http://localhost:8082/api/dsp",
                 "id": "consumer-dsp"
              }
            ],
@@ -79,6 +79,11 @@ SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
   "https://w3id.org/edc/v0.0.1/ns/value": "\($secret)"
 }')
 
+echo
+echo "Consumer client secret $clientSecret"
+echo
+echo
+echo
 echo
 echo "Set consumer secret in consumer connector"
 curl -sL -X POST http://localhost:8081/api/management/v3/secrets \
