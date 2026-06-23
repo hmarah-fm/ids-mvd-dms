@@ -200,7 +200,7 @@
                 "ST31 Start Connector Provider QnA",
                 "ST32 Start Connector Provider Manufacturing",
                 "ST40 Start Provider Catalog Server",
-                //"ST41 Start Standalone Federated Catalog server"
+                "ST41 Start Standalone Federated Catalog server"
             ],
             "dependsOrder": "parallel"
         }
