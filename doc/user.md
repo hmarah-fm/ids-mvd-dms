@@ -24,16 +24,6 @@ Do the following steps:
 - request from consumer : postman folder 520
   - check: postman request 528 must return RDF data
 
-## Run the digital thread agent
-
-Do the following steps:
-- start the consumer postgres: task PC01
-- optional: empty the inserted datasets table: task PC03
-- start the agent: task ST60
-- check:
-  - query the inserted datasets: task PC02
-  - query the consumer triple store: consumer fuseki UI
-
 ## Run the standalone federated catalog
 
 run the federated catalogue
@@ -48,5 +38,17 @@ run the federated catalogue
   - start the Standalone Federated Catalog Server
     - will access the Keycloak every minute to get the participants
     - will crawl the catalog of every participant  
+  - check
+    - postman collection request 601: get query through catalog api
+
+## Run the digital thread agent
+
+Do the following steps:
+- start the consumer postgres: task PC01
+- optional: empty the inserted datasets table: task PC03
+- start the agent: task ST60
+- check:
+  - query the inserted datasets: task PC02
+  - query the consumer triple store: consumer graphdb instance
 
 
