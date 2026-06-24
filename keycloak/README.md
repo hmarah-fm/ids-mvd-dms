@@ -14,7 +14,7 @@ Set up downloaded from [unimaas](https://github.com/UniMaaS-project-eu/ed-node/t
   - add client did:web:localhost%3A7093 (provider)
      - set the client ID in keycloak with host:port url encoded
      - e.g. `did:web:localhost%3A7093`
-     - e.g. `did:web:localhost%3A9876:connector1`
+     - e.g. `did:web:localhost%3A7093:connector1`
   - set the client secret
     - secret JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
 

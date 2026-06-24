@@ -7,9 +7,6 @@ Participants: did:web:localhost%3A70B3
   - 8: consumer
   - 9: provider
 
-Trusted authorities
-- nginx: did:web:localhost%3A9876
-
 ## Port numbers 
 
 Port number conventions 8ABC
@@ -66,9 +63,6 @@ Issuer service
 - 10014: /.well-known/api
 - 10015: identity
 - 10100: did
-
-Nginx
-- 9876
 
 ### Keycloak
 - 5000: admin UI and management api

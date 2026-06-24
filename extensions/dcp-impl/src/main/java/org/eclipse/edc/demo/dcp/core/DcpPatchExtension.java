@@ -65,8 +65,6 @@ public class DcpPatchExtension implements ServiceExtension {
 
         // register dataspace issuer
         trustedIssuerRegistry.register(new Issuer("did:web:dataspace-issuer", Map.of()), WILDCARD);
-        // did:web:localhost%3A9876 is trusted authority nbinx
-        trustedIssuerRegistry.register(new Issuer("did:web:localhost%3A9876", Map.of()), WILDCARD); 
 
         // did:web:localhost%3A10100 is the trusted authority issuer service
         trustedIssuerRegistry.register(new Issuer("did:web:localhost%3A10100", Map.of()), WILDCARD); 

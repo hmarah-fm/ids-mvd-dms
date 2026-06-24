@@ -47,7 +47,6 @@ The 2 deployments:
 The set-up is composed of 2 participants: the `consumer` and the `provider`.
 - dataspace applications
   - issuer service
-  - nginx, used for resolving TODO: resolving what?
 - consumer applications
   - fuseki triple store
     - for adding the datasets fetched by the digital thread
