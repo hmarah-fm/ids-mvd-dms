@@ -14,5 +14,5 @@ services:
       GRAPHDB_SECURITY: "true"
       GRAPHDB_ADMIN_PASSWORD: "mypassword"   # change this!
     volumes:
-      - ./graphdb-data:/opt/graphdb/home
+      - ./graphdb-data/repositories:/opt/graphdb/home/data/repositories
       - ./config:/config
