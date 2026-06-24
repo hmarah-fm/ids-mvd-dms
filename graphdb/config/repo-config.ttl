@@ -11,9 +11,6 @@
       sr:sailImpl [
          sail:sailType "graphdb:Sail" ;
 
-         # Inference ruleset
-         owlim:ruleset "owl2-ql" ;
-
          # Required for SPARQL UPDATE
          owlim:enable-sail-updates "true" ;
 

@@ -98,12 +98,6 @@
             "problemMatcher": []
         },
         {
-            "label": "FP02 Load Fuseki Provider Load Adient Data",
-            "type": "shell",
-            "command": "fuseki/provider/load_data_provider.sh fuseki/provider/adient_data.ttl",
-            "problemMatcher": []
-        },
-        {
             "label": "FP03 Fuseki Provider Wipe Data",
             "type": "shell",
             "command": "fuseki/provider/delete_provider_fuseki.sh",
@@ -116,9 +110,21 @@
             "problemMatcher": []
         },
         {
-            "label": "GD01 Stop GraphDB",
+            "label": "GD02 Stop GraphDB",
             "type": "shell",
             "command": "graphdb/stop.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "GD03 Create Inference GraphDB",
+            "type": "shell",
+            "command": "graphdb/create_inference_rule.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "GD04 Wipe GraphDB",
+            "type": "shell",
+            "command": "graphdb/delete_data.sh",
             "problemMatcher": []
         },
         {
