@@ -65,12 +65,11 @@ public class DcpPatchExtension implements ServiceExtension {
 
         // register dataspace issuer
         trustedIssuerRegistry.register(new Issuer("did:web:dataspace-issuer", Map.of()), WILDCARD);
-        trustedIssuerRegistry.register(new Issuer("did:web:localhost%3A9876", Map.of()), WILDCARD); // for the standard
-                                                                                                    // credentials
-        trustedIssuerRegistry.register(new Issuer("did:web:localhost%3A10100", Map.of()), WILDCARD); // for the
-                                                                                                     // credential used
-                                                                                                     // to demo the
-                                                                                                     // issuance flow
+        // did:web:localhost%3A9876 is trusted authority nbinx
+        trustedIssuerRegistry.register(new Issuer("did:web:localhost%3A9876", Map.of()), WILDCARD); 
+
+        // did:web:localhost%3A10100 is the trusted authority issuer service
+        trustedIssuerRegistry.register(new Issuer("did:web:localhost%3A10100", Map.of()), WILDCARD); 
 
         // register a default scope provider
         var contextMappingFunction = new DefaultScopeMappingFunction(

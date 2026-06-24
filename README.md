@@ -38,7 +38,7 @@ The 2 deployments:
     - vscode tasks
     - vscode launch configs
     - start up scripts
-- k8s deployment for actual deployment
+- k8s deployment for actual deployment (To be finalized)
   - based on kind and terraform
   - see
     - the [docker file](./deployment/docker/dataplane-eye.Dockerfile) (TODO)
@@ -46,7 +46,7 @@ The 2 deployments:
 
 The set-up is composed of 2 participants: the `consumer` and the `provider`.
 - dataspace applications
-  - issuer service TODO: :remove or not?
+  - issuer service
   - nginx, used for resolving TODO: resolving what?
 - consumer applications
   - fuseki triple store

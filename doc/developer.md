@@ -2,10 +2,13 @@
 
 ## Identities
 
-DID: did:web:localhost%3A70B3
+Participants: did:web:localhost%3A70B3
 - B (ten's, before last char): side (provider/consumer)
   - 8: consumer
   - 9: provider
+
+Trusted authorities
+- nginx: did:web:localhost%3A9876
 
 ## Port numbers 
 
@@ -16,7 +19,7 @@ Port number conventions 8ABC
   - 9: provider
 - A (hundred's): application
 
-### Identity hub
+### Identity hubs
 
   - consumer hub
     - 708*
@@ -52,7 +55,9 @@ Port number conventions 8ABC
     - ***4: catalog
     - ***5: version
 
-### Issuer service
+### Trusted authorities
+
+Issuer service
 - 9999: StatusList
 - 10010: api
 - 10011: sts
@@ -61,6 +66,9 @@ Port number conventions 8ABC
 - 10014: /.well-known/api
 - 10015: identity
 - 10100: did
+
+Nginx
+- 9876
 
 ### Keycloak
 - 5000: admin UI and management api
