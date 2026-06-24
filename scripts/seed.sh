@@ -80,6 +80,11 @@ SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
 }')
 
 echo
+echo "Consumer client secret $clientSecret"
+echo
+echo
+echo
+echo
 echo "Set consumer secret in consumer connector"
 curl -sL -X POST http://localhost:8081/api/management/v3/secrets \
   -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
@@ -105,7 +110,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
               },
               {
                 "type": "ProtocolEndpoint",
-                "serviceEndpoint": "http://localhost:8092/api/dsp",
+                "serviceEndpoint": "http://localhost:8192/api/dsp",
                 "id": "provider-catalogserver-dsp"
               }
             ],

@@ -68,7 +68,12 @@ public class PolicyEvaluationExtension implements ServiceExtension {
         ruleBindingRegistry.bind(ODRL_SCHEMA + "use", scope);
         ruleBindingRegistry.bind(constraintType, scope);
 
-        policyEngine.registerFunction(contextClass, Permission.class, constraintType, function);
+        policyEngine.registerFunction(
+            contextClass,           // context
+            Permission.class, // type
+            constraintType,         // key = constraintType (bound to the scope)
+            function                // function
+        ); 
     }
 
     private <C extends PolicyContext> void bindDutyFunction(AtomicConstraintRuleFunction<Duty, C> function, Class<C> contextClass, String scope, String constraintType) {

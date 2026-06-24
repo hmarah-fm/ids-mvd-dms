@@ -1,0 +1,10 @@
+{
+    "fm-kgviz-repositories": [{
+        "kind": "sparql",
+        "name": "Central KG",
+        "repo_protocol": "http",
+        "repo_host": "localhost:7200",
+        "repo_path": "/repositories/centralKG",
+        "repo_update_path": "/repositories/centralKG/statements"
+    }]
+}

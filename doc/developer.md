@@ -1,6 +1,6 @@
 # Developer documentation
 
-## identities
+## Identities
 
 DID: did:web:localhost%3A70B3
 - B (ten's, before last char): side (provider/consumer)
