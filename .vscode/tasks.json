@@ -128,14 +128,6 @@
             "problemMatcher": []
         },
         {
-            "label": "ST00 Start NGINX",
-            "type": "shell",
-            "command": "scripts/startups/start-nginx.sh",
-            "problemMatcher": [
-                "$eslint-stylish"
-            ]
-        },
-        {
             "label": "ST10 Start Issuer Service",
             "type": "shell",
             "command": "scripts/startups/start-issuer-service.sh",
@@ -198,7 +190,6 @@
         {
             "label": "ST99 Start All Processes",
             "dependsOn": [
-                "ST00 Start NGINX",
                 "ST10 Start Issuer Service",
                 "ST20 Start IdentityHub Consumer",
                 "ST21 Start IdentityHub Provider",
