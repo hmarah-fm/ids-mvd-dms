@@ -45,13 +45,8 @@ run the federated catalogue
   - add client did:web:localhost%3A7093 (provider)
   - set the client secret (consumer)
     - JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
-
-## todo's
-
-- documentation
-  - EDC-RDF ontology present in unimaas and in edc-rdf repo
-    - TODO: which one is leading? Discard the other one
-  - property msc_dms:relatedSupplier (ontology) or   - property range: object (ontology) or string (config)  
-    - TODO: align
+  - start the Standalone Federated Catalog Server
+    - will access the Keycloak every minute to get the participants
+    - will crawl the catalog of every participant  
 
 
