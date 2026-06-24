@@ -6,12 +6,12 @@ PREFIX  owl: <http://www.w3.org/2002/07/owl#>
 PREFIX sc: <http://unimaas-project.eu/MSCOntology#> 
 PREFIX : <urn:example:>
 
-SELECT DISTINCT ?g ?s ?t
-#FROM NAMED  :g1
+SELECT DISTINCT ?g ?s ?p ?t
+#FROM  :g1
 WHERE
 {
-#  GRAPH ?g 
+#GRAPH ?g 
     {
-      ?s :p ?t.
+      ?s ?p ?t.
     }  
-} LIMIT 10
+} LIMIT 100

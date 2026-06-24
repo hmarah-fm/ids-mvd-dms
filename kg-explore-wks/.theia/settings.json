@@ -6,5 +6,9 @@
         "repo_host": "localhost:7200",
         "repo_path": "/repositories/centralKG",
         "repo_update_path": "/repositories/centralKG/statements"
-    }]
+    }],
+    "fm-kgviz-prefixset": {
+        "ex": "http://example.com/",
+        "local": "http://data.local/graph/"
+    }
 }
