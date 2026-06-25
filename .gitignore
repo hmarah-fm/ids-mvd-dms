@@ -50,3 +50,6 @@ Data-0001/*
 
 #Graphdb data repository
 graphdb/graphdb-data/*
+
+demo/dataset_1/*
+demo/dataset_2/*

@@ -1,0 +1,1054 @@
+{
+  "info": {
+    "_postman_id": "3eabac25-4461-42d1-a91d-3bb68341ef98",
+    "name": "DEMO",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52467612",
+    "_collection_link": "https://go.postman.co/collection/52467612-3eabac25-4461-42d1-a91d-3bb68341ef98?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "000-Issuer-Credential Service Copy",
+      "item": [
+        {
+          "name": "001-Create consumer participant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"did\": \"{{CONSUMER_ID}}\",\n    \"holderId\": \"{{CONSUMER_ID}}\",\n    \"name\": \"{{CONSUMER_NAME}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/holders",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "holders"
+              ]
+            },
+            "description": "Generated from cURL: curl -sL -X POST 'http://localhost:10013/api/admin/v1alpha/holders' \\\n-H 'Content-Type: application/json' \\\n-d '{ \"did\": \"did:web:localhost%3A7083\", \"participantId\": \"did:web:localhost%3A7083\", \"name\": \"Consumer Participant\"}'"
+          },
+          "response": []
+        },
+        {
+          "name": "002-Create provider participant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"did\": \"{{PROVIDER_ID}}\",\n    \"holderId\": \"{{PROVIDER_ID}}\",\n    \"name\": \"{{PROVIDER_NAME}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/holders",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "holders"
+              ]
+            },
+            "description": "Generated from cURL: curl -sL -X POST 'http://localhost:10013/api/admin/v1alpha/holders' \\\n-H 'Content-Type: application/json' \\\n-d '{ \"did\": \"did:web:localhost%3A7093\", \"participantId\": \"did:web:localhost%3A7093\", \"name\": \"Provider Participant\"}'"
+          },
+          "response": []
+        },
+        {
+          "name": "003-Create attestation definitions",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"attestationType\": \"demo\",\n    \"configuration\": {\n    },\n    \"id\": \"demo-attestation-def-1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/attestations",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "attestations"
+              ]
+            },
+            "description": "Generated from cURL: curl -sL -X POST 'http://localhost:10013/api/admin/v1alpha/attestations' \\\n-H 'Content-Type: application/json' \\\n-d '{\n  \"attestationType\": \"demo\",\n  \"configuration\": {\n  },\n  \"id\": \"demo-attestation-def-1\"\n}'"
+          },
+          "response": []
+        },
+        {
+          "name": "004-Query Attestations definitions",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/attestations/query",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "attestations",
+                "query"
+              ]
+            },
+            "description": "Query attestation definitions"
+          },
+          "response": []
+        },
+        {
+          "name": "005-Create credential definitions",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"attestations\": [\n        \"demo-attestation-def-1\"\n    ],\n    \"credentialType\": \"MembershipCredential\",\n    \"id\": \"demo-credential-def-1\",\n    \"jsonSchema\": \"{}\",\n    \"jsonSchemaUrl\": \"https://example.com/schema/demo-credential.json\",\n    \"mappings\": [\n        {\n            \"input\": \"participant.membership_type\",\n            \"output\": \"credentialSubject.membership.membershipType\",\n            \"required\": \"true\"\n        },\n        {\n            \"input\": \"participant.membership_start_date\",\n            \"output\": \"credentialSubject.membership.since\",\n            \"required\": true\n        },\n        {\n            \"input\": \"participant.contact\",\n            \"output\": \"credentialSubject.membership.contact\",\n            \"required\": false\n        },\n        {\n            \"input\": \"participant.website\",\n            \"output\": \"credentialSubject.membership.website\",\n            \"required\": false\n        }\n    ],\n    \"rules\": [],\n    \"validity\": \"10000000\",\n    \"format\": \"VC1_0_JWT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/credentialdefinitions",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "credentialdefinitions"
+              ]
+            },
+            "description": "Generated from cURL: curl -sL -X POST 'http://localhost:10013/api/admin/v1alpha/credentialdefinitions' \\\n-H 'Content-Type: application/json' \\\n-d '{\n      \"attestations\": [\n        \"demo-attestation-def-1\"\n      ],\n      \"credentialType\": \"DemoCredential\",\n      \"dataModel\": \"V_1_1\",\n      \"id\": \"demo-credential-def-1\",\n      \"jsonSchema\": \"\",\n      \"jsonSchemaUrl\": \"https://example.com/schema/demo-credential.json\",\n      \"mappings\": [\n        {\n          \"input\": \"name\",\n          \"output\": \"credentialSubject.name\",\n          \"required\": \"true\"\n        }\n      ],\n      \"rules\": []\n    }'"
+          },
+          "response": []
+        },
+        {
+          "name": "004-Query Credential Definitions",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/credentialdefinitions/query",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "credentialdefinitions",
+                "query"
+              ]
+            },
+            "description": "Gets all credential definitions for a certain query."
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "apikey",
+        "apikey": [
+          {
+            "key": "value",
+            "value": "{{ISSUER_ADMIN_API_TOKEN}}",
+            "type": "string"
+          },
+          {
+            "key": "key",
+            "value": "x-api-key",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "100-CONSUMER-IDHub-VerifiableCredential Copy",
+      "item": [
+        {
+          "name": "101-Get All Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is OK\", function() {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{CS_URL}}/api/identity/v1alpha/credentials",
+              "host": [
+                "{{CS_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "credentials"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "102-Make Credential Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if(pm.response.code < 300 && pm.response.code >= 200){",
+                  "    if(pm.response.text().length > 0){",
+                  "        const requestId = pm.response.text()",
+                  "        pm.collectionVariables.set(\"REQUEST_ID\", requestId);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"issuerDid\": \"{{ISSUER_DID}}\",\n    \"holderPid\": \"credential-request-1\",\n    \"credentials\": [{\n        \"format\": \"VC1_0_JWT\",\n        \"type\": \"MembershipCredential\",\n        \"id\": \"demo-credential-def-1\"\n    }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CS_URL}}/api/identity/v1alpha/participants/{{CONSUMER_PARTICIPANT_ID_BASE64}}/credentials/request",
+              "host": [
+                "{{CS_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "participants",
+                "{{CONSUMER_PARTICIPANT_ID_BASE64}}",
+                "credentials",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "103-Check if additional credential Issued",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is OK\", function() {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{CS_URL}}/api/identity/v1alpha/credentials",
+              "host": [
+                "{{CS_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "credentials"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "apikey",
+        "apikey": [
+          {
+            "key": "value",
+            "value": "{{ISSUER_ADMIN_API_TOKEN}}",
+            "type": "string"
+          },
+          {
+            "key": "key",
+            "value": "x-api-key",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "200-PROVIDER-IDHub-VerifiableCredential Copy",
+      "item": [
+        {
+          "name": "201-Get All Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is OK\", function() {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{PV_URL}}/api/identity/v1alpha/credentials",
+              "host": [
+                "{{PV_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "credentials"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "202-Make Credential Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if(pm.response.code < 300 && pm.response.code >= 200){",
+                  "    if(pm.response.text().length > 0){",
+                  "        const requestId = pm.response.text()",
+                  "        pm.collectionVariables.set(\"REQUEST_ID\", requestId);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"issuerDid\": \"{{ISSUER_DID}}\",\n    \"holderPid\": \"credential-request-1\",\n    \"credentials\": [{\n        \"format\": \"VC1_0_JWT\",\n        \"type\": \"MembershipCredential\",\n        \"id\": \"demo-credential-def-1\"\n\n    }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PV_URL}}/api/identity/v1alpha/participants/{{PROVIDER_PARTICIPANT_ID_BASE64}}/credentials/request",
+              "host": [
+                "{{PV_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "participants",
+                "{{PROVIDER_PARTICIPANT_ID_BASE64}}",
+                "credentials",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "203-Check if additional credential Issued",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is OK\", function() {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{PV_URL}}/api/identity/v1alpha/credentials",
+              "host": [
+                "{{PV_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "credentials"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "apikey",
+        "apikey": [
+          {
+            "key": "value",
+            "value": "{{ISSUER_ADMIN_API_TOKEN}}",
+            "type": "string"
+          },
+          {
+            "key": "key",
+            "value": "x-api-key",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "400-Provider Connector (File Dataset)",
+      "item": [
+        {
+          "name": "411-Create RDF Service Asset File",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api-key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "X-Api-Key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc\": \"http://example.com/msc#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-file\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n    \"msc_dms:description\": \"RDF File Dataset for Internal Processes\",\n    \"msc_dms:aboutProcess\":\"true\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n    \"edc_rdf:filePath\":\"demo/dataset_2/subgraph_pc3pc4_internal.ttl\",\n    \"edc_rdf:encoding\": \"UTF-8\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\":\"file\"\n  }\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/assets",
+              "host": [
+                "{{PROVIDER_QNA_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "assets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "412-Create Membership Policy RDF-Permission",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"PolicyDefinition\",\n    \"@id\": \"require-membership-permission-file\",\n    \"policy\": {\n        \"@type\": \"Set\",\n        \"permission\": [\n            {\n                \"action\": \"use\",\n                \"constraint\": {\n                    \"leftOperand\": \"MembershipCredential\",\n                    \"operator\": \"eq\",\n                    \"rightOperand\": \"active\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/policydefinitions",
+              "host": [
+                "{{PROVIDER_QNA_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "413-Create Membership Policy RDF-Obligation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"PolicyDefinition\",\n    \"@id\": \"require-membership-obligation-file\",\n    \"policy\": {\n        \"@type\": \"Set\",\n        \"obligation\": [\n            {\n                \"action\": \"use\",\n                \"constraint\": {\n                    \"leftOperand\": \"MembershipCredential\",\n                    \"operator\": \"eq\",\n                    \"rightOperand\": \"active\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/policydefinitions",
+              "host": [
+                "{{PROVIDER_QNA_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "414-Create \"require membership\" for RDFService",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@id\": \"membership-required-def-rdfservice-file\",\n    \"@type\": \"ContractDefinition\",\n    \"accessPolicyId\": \"require-membership-permission-file\",\n    \"contractPolicyId\": \"require-membership-obligation-file\",\n    \"assetsSelector\": {\n        \"@type\": \"Criterion\",\n        \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\n        \"operator\": \"=\",\n        \"operandRight\": \"request-rdf-service-file\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/contractdefinitions",
+              "host": [
+                "{{PROVIDER_QNA_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "contractdefinitions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "500-Provider Connector (SPARQL Endpoint)",
+      "item": [
+        {
+          "name": "511-Create RDF Service Asset SparqlEndpoint Construct",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api-key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "X-Api-Key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-sparql\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n    \"msc_dms:description\": \"Dataset 1 from Sparql Endpoint\",\n    \"msc_dms:aboutProcess\": \"true\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n    \"edc_rdf:sparqlEndpoint\":\"http://localhost:3032/provider/query\",\n    \"edc_rdf:sparqlQuery\":\"PREFIX sc: <http://example.com/MSCOnto#> CONSTRUCT { ?s ?p ?o .} WHERE { ?s ?p ?o .}\",\n    \"edc_rdf:username\":\"admin\",\n    \"edc_rdf:password\":\"mypassword\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\": \"sparqlendpoint\"\n  }\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_MS_URL}}/api/management/v3/assets",
+              "host": [
+                "{{PROVIDER_MS_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "assets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "512-Create Membership Policy RDF-Permission",
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api-key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "X-Api-Key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"PolicyDefinition\",\n    \"@id\": \"require-membership-permission-sparql\",\n    \"policy\": {\n        \"@type\": \"Set\",\n        \"permission\": [\n            {\n                \"action\": \"use\",\n                \"constraint\": {\n                    \"leftOperand\": \"MembershipCredential\",\n                    \"operator\": \"eq\",\n                    \"rightOperand\": \"active\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_MS_URL}}/api/management/v3/policydefinitions",
+              "host": [
+                "{{PROVIDER_MS_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "513-Create Membership Policy RDF-Obligation",
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api-key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "X-Api-Key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"PolicyDefinition\",\n    \"@id\": \"require-membership-obligation-sparql\",\n    \"policy\": {\n        \"@type\": \"Set\",\n        \"obligation\": [\n            {\n                \"action\": \"use\",\n                \"constraint\": {\n                    \"leftOperand\": \"MembershipCredential\",\n                    \"operator\": \"eq\",\n                    \"rightOperand\": \"active\"\n                }\n            }\n        ]\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_MS_URL}}/api/management/v3/policydefinitions",
+              "host": [
+                "{{PROVIDER_MS_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "policydefinitions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "514-Create \"require membership\" for RDFService",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@id\": \"membership-required-def-rdfservice-sparql\",\n    \"@type\": \"ContractDefinition\",\n    \"accessPolicyId\": \"require-membership-permission-sparql\",\n    \"contractPolicyId\": \"require-membership-obligation-sparql\",\n    \"assetsSelector\": {\n        \"@type\": \"Criterion\",\n        \"operandLeft\": \"https://w3id.org/edc/v0.0.1/ns/id\",\n        \"operator\": \"=\",\n        \"operandRight\": \"request-rdf-service-sparql\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/contractdefinitions",
+              "host": [
+                "{{PROVIDER_QNA_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "contractdefinitions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Consumer connector",
+      "item": [
+        {
+          "name": "Get Cached Catalogs",
+          "event": [
+            {
+              "listen": "test",
+              "script": {}
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"QuerySpec\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CONSUMER_CATALOG_QUERY_URL}}/api/catalog/v1alpha/catalog/query",
+              "host": [
+                "{{CONSUMER_CATALOG_QUERY_URL}}"
+              ],
+              "path": [
+                "api",
+                "catalog",
+                "v1alpha",
+                "catalog",
+                "query"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "CS_URL",
+      "value": "http://localhost:7082",
+      "type": "default"
+    },
+    {
+      "key": "ISSUER_ADMIN_URL",
+      "value": "http://localhost:10013",
+      "type": "default"
+    },
+    {
+      "key": "ISSUER_ADMIN_API_TOKEN",
+      "value": "c3VwZXItdXNlcg==.c3VwZXItc2VjcmV0LWtleQo=",
+      "type": "default"
+    },
+    {
+      "key": "ISSUER_CONTEXT_ID",
+      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0ExMDEwMA==",
+      "type": "default"
+    },
+    {
+      "key": "CONSUMER_PARTICIPANT_ID_BASE64",
+      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDgz",
+      "type": "default"
+    },
+    {
+      "key": "PV_URL",
+      "value": "http://localhost:7092",
+      "type": "default"
+    },
+    {
+      "key": "PROVIDER_QNA_URL",
+      "value": "http://localhost:8191",
+      "type": "default"
+    },
+    {
+      "key": "PROVIDER_MS_URL",
+      "value": "http://localhost:8291",
+      "type": "default"
+    },
+    {
+      "key": "PROVIDER_PARTICIPANT_ID_BASE64",
+      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDkz",
+      "type": "default"
+    },
+    {
+      "key": "CONSUMER_CATALOG_QUERY_URL",
+      "value": "http://localhost:8084",
+      "type": "default"
+    },
+    {
+      "key": "api-key",
+      "value": "password",
+      "type": "default"
+    }
+  ]
+}

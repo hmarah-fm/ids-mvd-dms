@@ -128,6 +128,26 @@
             "problemMatcher": []
         },
         {
+            "label": "DE02 Register Demo Datasets Provider",
+            "type": "shell",
+            "command": "demo/register_provider_datasets.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "DE01 Load Dataset 1 Fuseki Provider",
+            "type": "shell",
+            "command": "fuseki/provider/load_data_provider.sh demo/dataset_1/subgraph_pc1pc2_external.ttl",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST00 Start NGINX",
+            "type": "shell",
+            "command": "scripts/startups/start-nginx.sh",
+            "problemMatcher": [
+                "$eslint-stylish"
+            ]
+        },
+        {
             "label": "ST10 Start Issuer Service",
             "type": "shell",
             "command": "scripts/startups/start-issuer-service.sh",
@@ -199,7 +219,23 @@
                 "ST40 Start Provider Catalog Server",
                 "ST41 Start Standalone Federated Catalog server"
             ],
-            "dependsOrder": "parallel"
+            "dependsOrder": "parallel",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST101 Start Demo Services",
+            "dependsOn":[
+                "PC01 Postgres Consumer Start Postgres",
+                "PC03 Postgres Consumer Delete inserted datasets",
+                "FP01 Fuseki Provider Start ",
+                "FP03 Fuseki Provider Wipe Data",
+                "GD01 Start GraphDB",
+                "GD04 Wipe GraphDB",
+                "GD03 Create Inference GraphDB",
+                "DE01 Load Dataset 1 Fuseki Provider",
+                "ST60 Start Digital thread agent"
+            ],
+            "dependsOrder": "sequence" 
         }
     ]
 }
