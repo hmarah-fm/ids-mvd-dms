@@ -25,12 +25,10 @@ Rules{
 
 Id: unimaas
 
-pc1 sc:hasOutput product
-pc2 sc:hasInput product
-
+pc1 <sc:hasOutput> product
+pc2 <sc:hasInput>  product
 --------------------------------------
-
-pc1 sc:hasNextStep pc2
+pc1 <sc:hasNextStep> pc2
 
 }
 '''
