@@ -1,0 +1,9 @@
+DELETE {
+  GRAPH ?g { ?s ?p ?o }
+  ?s ?p ?o
+}
+WHERE {
+  GRAPH ?g { ?s ?p ?o }
+#  UNION this is no sparql conform
+  { ?s ?p ?o }
+}
