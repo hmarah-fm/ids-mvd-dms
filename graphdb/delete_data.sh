@@ -14,7 +14,7 @@ DELETE {
 }
 WHERE {
   GRAPH ?g { ?s ?p ?o }
-  UNION
+#  UNION this is no sparql conform
   { ?s ?p ?o }
 }
 EOF
