@@ -638,7 +638,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc\": \"http://example.com/msc#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-file\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n    \"msc_dms:description\": \"File Dataset for the RDF service for testing\",\n    \"msc_dms:name\": \"Location name\",\n    \"msc_dms:relatedSpatialRegion\":\"Various\",\n    \"msc_dms:aboutSupplier\":\"No supplier\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n    \"edc_rdf:filePath\":\"scripts/fuseki/provider/example_provider_data.ttl\",\n    \"edc_rdf:encoding\": \"UTF-8\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\":\"file\"\n  }\n}\n",
+                  "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc\": \"http://example.com/msc#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-file\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n//    \"msc_dms:description\": \"File Dataset for the RDF service for testing\",\n    \"msc_dms:description\": \"Dataset 2 for Internal Processes from ttl file\",\n    \"msc_dms:name\": \"Location name\",\n    \"msc_dms:relatedSpatialRegion\":\"Various\",\n    \"msc_dms:aboutSupplier\":\"No supplier\",\n    \"msc_dms:aboutProcess\":\"true\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n//    \"edc_rdf:filePath\":\"scripts/fuseki/provider/example_provider_data.ttl\",\n    \"edc_rdf:filePath\":\"demo/dataset_2/subgraph_pc3pc4_internal.ttl\",\n    \"edc_rdf:encoding\": \"UTF-8\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\":\"file\"\n  }\n}\n\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -967,7 +967,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"CONTRACT_QuoteRequest_AGREEMENT_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"CONTRACT_AGREEMENT_ID_RDF\")){",
                       "    throw new Error('Contract Agreement ID is not yet available, please execute requests \"Initiate Negotiation and Get Contract Negotiation\" first!');",
                       "}"
                     ],
@@ -1025,7 +1025,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"CONTRACT_QuoteRequest_AGREEMENT_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"CONTRACT_AGREEMENT_ID_RDF\")){",
                       "    throw new Error('Contract Agreement ID is not yet available, please execute requests \"Initiate Negotiation and Get Contract Negotiation\" first!');",
                       "}"
                     ],
@@ -1083,7 +1083,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"CONTRACT_QuoteRequest_AGREEMENT_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"CONTRACT_AGREEMENT_ID_RDF\")){",
                       "    throw new Error('Contract Agreement ID is not yet available, please execute requests \"Initiate Negotiation and Get Contract Negotiation\" first!');",
                       "}"
                     ],
@@ -1296,7 +1296,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"TRANSFER_Quote_Request_PROCESS_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"TRANSFER_PROCESS_ID_RDF\")){",
                       "    throw new Error('Transfer Process ID is not yet available, please execute request \"Get Transfer Processes\" first!');",
                       "}"
                     ],
@@ -1345,7 +1345,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"QUOTE_AUTHORIZATION_flash\")){",
+                      "if(!pm.collectionVariables.has(\"QUOTE_AUTHORIZATION_RDF\")){",
                       "    throw new Error(' The authorization token is not yet available, please execute request \"Get EDR DataAddress for TransferId\" first!');",
                       "}"
                     ],
@@ -1441,7 +1441,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-sparql\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n    \"msc_dms:description\": \"Dataset from Sparql Endpoint for the RDF service for testing\",\n    \"msc_dms:name\": \"Suppliers Locations\",\n    \"msc_dms:relatedSpatialRegion\": \"Various\",\n    \"msc_dms:aboutSupplier\": \"No supplier\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n    \"edc_rdf:sparqlEndpoint\":\"http://localhost:3032/provider/query\",\n    \"edc_rdf:sparqlQuery\":\"PREFIX sc: <http://example.com/MSCOnto#> CONSTRUCT { ?supplier sc:hasLocation ?location . } WHERE { ?supplier sc:hasLocation ?location ; }\",\n    \"edc_rdf:username\":\"admin\",\n    \"edc_rdf:password\":\"mypassword\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\": \"sparqlendpoint\"\n  }\n}\n",
+                  "raw": "{\n  \"@context\": [\n    \"https://w3id.org/edc/connector/management/v0.0.1\",\n    {\n      \"msc_dms\": \"http://www.w3.org/ns/msc_dms#\",\n      \"dcat\": \"http://www.w3.org/ns/dcat#\",\n      \"edc_rdf\": \"https://ontology.flandersmake.be/edc_rdf/ontology#\"\n    }\n  ],\n  \"@id\": \"request-rdf-service-sparql\",\n  \"@type\": \"Asset\",\n  \"properties\": {\n //   \"msc_dms:description\": \"Dataset from Sparql Endpoint for the RDF service for testing\",\n    \"msc_dms:description\": \"Dataset 1 for internal Processes from Sparql Endpoint\",\n    \"msc_dms:name\": \"Suppliers Locations\",\n    \"msc_dms:relatedSpatialRegion\": \"Various\",\n    \"msc_dms:aboutSupplier\": \"No supplier\",\n    \"msc_dms:aboutProcess\": \"true\"\n  },\n  \"dataAddress\": {\n    \"@type\": \"DataAddress\",\n    \"type\": \"RDFService\",\n    \"edc_rdf:sparqlEndpoint\":\"http://localhost:3032/provider/query\",\n//    \"edc_rdf:sparqlQuery\":\"PREFIX sc: <http://example.com/MSCOnto#> CONSTRUCT { ?supplier sc:hasLocation ?location . } WHERE { ?supplier sc:hasLocation ?location ; }\",\n    \"edc_rdf:sparqlQuery\":\"PREFIX sc: <http://example.com/MSCOnto#> CONSTRUCT { ?s ?p ?o .} WHERE { ?s ?p ?o .}\",\n    \"edc_rdf:username\":\"admin\",\n    \"edc_rdf:password\":\"mypassword\",\n    \"edc_rdf:serialization\": \"TTL\",\n    \"edc_rdf:serviceType\": \"sparqlendpoint\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1449,9 +1449,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/assets",
+                  "raw": "{{PROVIDER_MS_URL}}/api/management/v3/assets",
                   "host": [
-                    "{{PROVIDER_QNA_URL}}"
+                    "{{PROVIDER_MS_URL}}"
                   ],
                   "path": [
                     "api",
@@ -1478,9 +1478,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/policydefinitions",
+                  "raw": "{{PROVIDER_MS_URL}}/api/management/v3/policydefinitions",
                   "host": [
-                    "{{PROVIDER_QNA_URL}}"
+                    "{{PROVIDER_MS_URL}}"
                   ],
                   "path": [
                     "api",
@@ -1507,9 +1507,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/policydefinitions",
+                  "raw": "{{PROVIDER_MS_URL}}/api/management/v3/policydefinitions",
                   "host": [
-                    "{{PROVIDER_QNA_URL}}"
+                    "{{PROVIDER_MS_URL}}"
                   ],
                   "path": [
                     "api",
@@ -1536,9 +1536,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/contractdefinitions",
+                  "raw": "{{PROVIDER_MS_URL}}/api/management/v3/contractdefinitions",
                   "host": [
-                    "{{PROVIDER_QNA_URL}}"
+                    "{{PROVIDER_MS_URL}}"
                   ],
                   "path": [
                     "api",
@@ -1770,7 +1770,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"CONTRACT_QuoteRequest_AGREEMENT_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"CONTRACT_AGREEMENT_ID_RDF\")){",
                       "    throw new Error('Contract Agreement ID is not yet available, please execute requests \"Initiate Negotiation and Get Contract Negotiation\" first!');",
                       "}"
                     ],
@@ -1828,7 +1828,7 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"CONTRACT_QuoteRequest_AGREEMENT_ID_flash\")){",
+                      "if(!pm.collectionVariables.has(\"CONTRACT_AGREEMENT_ID_RDF\")){",
                       "    throw new Error('Contract Agreement ID is not yet available, please execute requests \"Initiate Negotiation and Get Contract Negotiation\" first!');",
                       "}"
                     ],
@@ -2222,7 +2222,7 @@
       "name": "600-Standalone-Federated-Catalog-Server",
       "item": [
         {
-          "name": "601-Access-Catalog-Server-private",
+          "name": "601-Consumer-Access-Private-Standalone-Federated-Catalog",
           "event": [
             {
               "listen": "test",
@@ -2508,6 +2508,10 @@
     },
     {
       "key": "STANDALONE_CATALOG_API_CATALOG",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_MS_URL",
       "value": ""
     }
   ]
