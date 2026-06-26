@@ -9,10 +9,11 @@ PREFIX : <urn:example:>
 
 SELECT DISTINCT ?g ?s ?p ?t
 FROM NAMED  <http://data.local/graph/request-rdf-service-sparql>
+FROM NAMED  <http://data.local/graph/request-rdf-service-file>
 WHERE
 {
 GRAPH ?g 
     {
       ?s ?p ?t.
     }  
-} LIMIT 100
+} LIMIT 10

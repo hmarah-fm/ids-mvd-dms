@@ -130,7 +130,7 @@
         {
             "label": "DE02 Register Demo Datasets Provider",
             "type": "shell",
-            "command": "demo/register_provider_datasets.sh",
+            "command": "scripts/demo_setup/register_provider_datasets.sh",
             "problemMatcher": []
         },
         {
@@ -138,14 +138,6 @@
             "type": "shell",
             "command": "fuseki/provider/load_data_provider.sh demo/dataset_1/subgraph_pc1pc2_external.ttl",
             "problemMatcher": []
-        },
-        {
-            "label": "ST00 Start NGINX",
-            "type": "shell",
-            "command": "scripts/startups/start-nginx.sh",
-            "problemMatcher": [
-                "$eslint-stylish"
-            ]
         },
         {
             "label": "ST10 Start Issuer Service",
@@ -208,6 +200,21 @@
             "problemMatcher": []
         },
         {
+            "label": "ST98 Start Demo Services",
+            "dependsOn":[
+                "PC01 Postgres Consumer Start Postgres",
+                "PC03 Postgres Consumer Delete inserted datasets",
+                "FP01 Fuseki Provider Start ",
+                "FP03 Fuseki Provider Wipe Data",
+                "GD01 Start GraphDB",
+                "GD04 Wipe GraphDB",
+                "GD03 Create Inference GraphDB",
+                "DE01 Load Dataset 1 Fuseki Provider",
+                "ST60 Start Digital thread agent"
+            ],
+            "dependsOrder": "sequence" 
+        },
+        {
             "label": "ST99 Start All Processes",
             "dependsOn": [
                 "ST10 Start Issuer Service",
@@ -221,21 +228,6 @@
             ],
             "dependsOrder": "parallel",
             "problemMatcher": []
-        },
-        {
-            "label": "ST101 Start Demo Services",
-            "dependsOn":[
-                "PC01 Postgres Consumer Start Postgres",
-                "PC03 Postgres Consumer Delete inserted datasets",
-                "FP01 Fuseki Provider Start ",
-                "FP03 Fuseki Provider Wipe Data",
-                "GD01 Start GraphDB",
-                "GD04 Wipe GraphDB",
-                "GD03 Create Inference GraphDB",
-                "DE01 Load Dataset 1 Fuseki Provider",
-                "ST60 Start Digital thread agent"
-            ],
-            "dependsOrder": "sequence" 
         }
     ]
 }
