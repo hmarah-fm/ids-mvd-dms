@@ -16,7 +16,10 @@ Set up downloaded from [unimaas](https://github.com/UniMaaS-project-eu/ed-node/t
      - e.g. `did:web:localhost%3A7093`
      - e.g. `did:web:localhost%3A7093:connector1`
   - set the client secret
-    - secret JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
+    - 7093: secret JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
+    - 7193: secret hhbgTAC5A2Xwl05EF9fCdKwtFl4DkmAy
+
+Note: "Obtain the Client secret value, which will correspond to the value of the "CONNECTOR*_IDENTIHUB_UNIMAAS_OIDC_IDP_CLIENT_SECRET" variable that must be defined for the connector's identityHub."
 
 Important: 
 

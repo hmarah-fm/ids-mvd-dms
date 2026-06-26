@@ -152,9 +152,15 @@
             "problemMatcher": []
         },
         {
-            "label": "ST21 Start IdentityHub Provider",
+            "label": "ST21 Start IdentityHub Provider QNA",
             "type": "shell",
-            "command": "scripts/startups/start-identityhub-provider.sh",
+            "command": "scripts/startups/start-identityhub-provider-qna.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "ST22 Start IdentityHub Provider MS",
+            "type": "shell",
+            "command": "scripts/startups/start-identityhub-provider-ms.sh",
             "problemMatcher": []
         },
         {
@@ -219,7 +225,8 @@
             "dependsOn": [
                 "ST10 Start Issuer Service",
                 "ST20 Start IdentityHub Consumer",
-                "ST21 Start IdentityHub Provider",
+                "ST21 Start IdentityHub Provider QNA",
+                "ST22 Start IdentityHub Provider MS",
                 "ST30 Start Connector Consumer",
                 "ST31 Start Connector Provider QnA",
                 "ST32 Start Connector Provider Manufacturing",

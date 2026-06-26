@@ -1,19 +1,5 @@
 #!/bin/bash
 
-#
-#  Copyright (c) 2024 Metaform Systems, Inc.
-#
-#  This program and the accompanying materials are made available under the
-#  terms of the Apache License, Version 2.0 which is available at
-#  https://www.apache.org/licenses/LICENSE-2.0
-#
-#  SPDX-License-Identifier: Apache-2.0
-#
-#  Contributors:
-#       Metaform Systems, Inc. - initial API and implementation
-#
-#
-
 ## This script must be executed when running the dataspace from vscode. 
 
 echo
@@ -32,6 +18,7 @@ newman run \
 ## Seed identity data to identityhubs
 API_KEY="c3VwZXItdXNlcg==.c3VwZXItc2VjcmV0LWtleQo="
 
+###############################################################################
 # add participant "consumer"
 echo
 echo
@@ -82,9 +69,6 @@ SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
 echo
 echo "Consumer client secret $clientSecret"
 echo
-echo
-echo
-echo
 echo "Set consumer secret in consumer connector"
 curl -sL -X POST http://localhost:8081/api/management/v3/secrets \
   -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
@@ -96,9 +80,12 @@ curl -sL -X POST http://localhost:8181/api/management/v3/secrets \
 echo
 
 
-# add participant "provider"
+###############################################################################
+# add participant "provider qna"
 echo
-echo "Create provider participant context in IdentityHub"
+echo
+echo
+echo "Create provider QNA participant context in IdentityHub"
 PEM_PROVIDER=$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' deployment/assets/provider_public.pem)
 DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
             "roles":[],
@@ -111,7 +98,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
               {
                 "type": "ProtocolEndpoint",
                 "serviceEndpoint": "http://localhost:8192/api/dsp",
-                "id": "provider-catalogserver-dsp"
+                "id": "provider-qna-catalog-dsp"
               }
             ],
             "active": true,
@@ -143,22 +130,79 @@ SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
 }')
 
 echo
-echo "Set provider secret in provider catalog server"
+echo "Provider QNA client secret $clientSecret"
+echo
+echo "Set provider qna secret in provider catalog server"
 curl -sL -X POST http://localhost:8091/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
 echo
 echo
-echo "Set provider secret in provider connector qna"
+echo "Set provider qan secret in provider connector qna"
 curl -sL -X POST http://localhost:8191/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
 echo
+
+###############################################################################
+# add participant "provider ms"
 echo
-echo "Set provider secret in provider connector manufacturing"
+echo
+echo
+echo "Create provider MS participant context in IdentityHub"
+PEM_PROVIDER=$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' deployment/assets/provider_public.pem)
+DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
+            "roles":[],
+            "serviceEndpoints":[
+              {
+                 "type": "CredentialService",
+                 "serviceEndpoint": "http://localhost:7191/api/credentials/v1/participants/ZGlkOndlYjpsb2NhbGhvc3QlM0E3MTkz",
+                 "id": "provider-ms-credentialservice-1"
+              },
+              {
+                "type": "ProtocolEndpoint",
+                "serviceEndpoint": "http://localhost:8292/api/dsp",
+                "id": "provider-ms-catalog-dsp"
+              }
+            ],
+            "active": true,
+            "participantId": "did:web:localhost%3A7193",
+            "did": "did:web:localhost%3A7193",
+            "key":{
+                "keyId": "did:web:localhost%3A7193#key-1",
+                "privateKeyAlias": "key-1",
+                "publicKeyPem":"\($pem)"
+            }
+      }')
+
+# the provider runtime will need to have the client_secret in its vault as well, so we store it in a variable
+# and use the Secrets API (part of Management API) to insert it.
+clientSecret=$(curl -s --location 'http://localhost:7192/api/identity/v1alpha/participants/' \
+--header 'Content-Type: application/json' \
+--header "x-api-key: $API_KEY" \
+--data "$DATA_PROVIDER" | jq -r '.clientSecret')
+
+# add client secret to the provider runtimes
+SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
+'{
+  "@context" : {
+    "edc" : "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@type" : "https://w3id.org/edc/v0.0.1/ns/Secret",
+  "@id" : "did:web:localhost%3A7193-sts-client-secret",
+  "https://w3id.org/edc/v0.0.1/ns/value": "\($secret)"
+}')
+
+echo
+echo "Provider MS client secret $clientSecret"
+echo
+echo "Set provider ms secret in provider connector ms"
 curl -sL -X POST http://localhost:8291/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
 echo
 
-###############################################
-# SEED ISSUER SERVICE
-###############################################
 
+###############################################################################
+# SEED ISSUER SERVICE
+###############################################################################
+
+echo
+echo
 echo
 echo "Create dataspace issuer participant"
 PEM_ISSUER=$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' deployment/assets/issuer_public.pem)

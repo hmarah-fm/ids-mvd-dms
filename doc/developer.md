@@ -2,10 +2,18 @@
 
 ## Identities
 
-Participants: did:web:localhost%3A70B3
+Participants: did:web:localhost%3A7AB3
 - B (ten's, before last char): side (provider/consumer)
   - 8: consumer
   - 9: provider
+- A (hundred's, second char in port): identity for the side
+  - 8: consumer
+  - 9: provider
+
+1 consumer and 2 providers:
+-  did:web:localhost%3A7083 consumer
+-  did:web:localhost%3A7093 provider qna
+-  did:web:localhost%3A7193 provider ms
 
 ## Port numbers 
 
@@ -21,7 +29,8 @@ Port number conventions 8ABC
   - consumer hub
     - 708*
   - provider hub
-    - 709*
+    - 709*: qna
+    - 719*: ms
   - roles
     - ***0: api
     - ***1: presentation
