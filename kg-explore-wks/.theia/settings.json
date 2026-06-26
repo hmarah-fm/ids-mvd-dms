@@ -9,6 +9,7 @@
     }],
     "fm-kgviz-prefixset": {
         "ex": "http://example.com/",
-        "local": "http://data.local/graph/"
+        "local": "http://data.local/graph/",
+        "sc": "http://unimaas-project.eu/MSCOntology#"
     }
 }
