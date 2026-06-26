@@ -42,13 +42,45 @@
           "response": []
         },
         {
-          "name": "002-Create provider participant",
+          "name": "002-Create provider QNA participant",
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"did\": \"{{PROVIDER_ID}}\",\n    \"holderId\": \"{{PROVIDER_ID}}\",\n    \"name\": \"{{PROVIDER_NAME}}\"\n}",
+              "raw": "{\n    \"did\": \"{{PROVIDER_QNA_ID}}\",\n    \"holderId\": \"{{PROVIDER_QNA_ID}}\",\n    \"name\": \"{{PROVIDER_QNA_NAME}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/holders",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "holders"
+              ]
+            },
+            "description": "Generated from cURL: curl -sL -X POST 'http://localhost:10013/api/admin/v1alpha/holders' \\\n-H 'Content-Type: application/json' \\\n-d '{ \"did\": \"did:web:localhost%3A7093\", \"participantId\": \"did:web:localhost%3A7093\", \"name\": \"Provider Participant\"}'"
+          },
+          "response": []
+        },
+        {
+          "name": "002-Create provider MS participant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"did\": \"{{PROVIDER_MS_ID}}\",\n    \"holderId\": \"{{PROVIDER_MS_ID}}\",\n    \"name\": \"{{PROVIDER_MS_NAME}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -340,9 +372,53 @@
             }
           },
           "response": []
+        }
+      ],
+      "auth": {
+        "type": "apikey",
+        "apikey": [
+          {
+            "key": "value",
+            "value": "{{ISSUER_ADMIN_API_TOKEN}}",
+            "type": "string"
+          },
+          {
+            "key": "key",
+            "value": "x-api-key",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
         },
         {
-          "name": "103-Check if additional credential Issued",
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "110-PROVIDER-QNA-IDHub-VerifiableCredential",
+      "item": [
+        {
+          "name": "111-Get All Credentials",
           "event": [
             {
               "listen": "test",
@@ -353,7 +429,8 @@
                   "})"
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             },
             {
@@ -363,7 +440,8 @@
                   ""
                 ],
                 "type": "text/javascript",
-                "packages": {}
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -371,15 +449,65 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{CS_URL}}/api/identity/v1alpha/credentials",
+              "raw": "{{PROVIDER_QNA_IDENTITY_URL}}/api/identity/v1alpha/credentials",
               "host": [
-                "{{CS_URL}}"
+                "{{PROVIDER_QNA_IDENTITY_URL}}"
               ],
               "path": [
                 "api",
                 "identity",
                 "v1alpha",
                 "credentials"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "112-Make Credential Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if(pm.response.code < 300 && pm.response.code >= 200){",
+                  "    if(pm.response.text().length > 0){",
+                  "        const requestId = pm.response.text()",
+                  "        pm.collectionVariables.set(\"REQUEST_ID\", requestId);",
+                  "    }",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"issuerDid\": \"{{ISSUER_DID}}\",\n    \"holderPid\": \"credential-request-1\",\n    \"credentials\": [{\n        \"format\": \"VC1_0_JWT\",\n        \"type\": \"MembershipCredential\",\n        \"id\": \"demo-credential-def-1\"\n\n    }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_QNA_IDENTITY_URL}}/api/identity/v1alpha/participants/{{PROVIDER_QNA_PARTICIPANT_ID_BASE64}}/credentials/request",
+              "host": [
+                "{{PROVIDER_QNA_IDENTITY_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "participants",
+                "{{PROVIDER_QNA_PARTICIPANT_ID_BASE64}}",
+                "credentials",
+                "request"
               ]
             }
           },
@@ -427,10 +555,10 @@
       ]
     },
     {
-      "name": "200-PROVIDER-IDHub-VerifiableCredential",
+      "name": "120-PROVIDER-MS-IDHub-VerifiableCredential",
       "item": [
         {
-          "name": "201-Get All Credentials",
+          "name": "121-Get All Credentials",
           "event": [
             {
               "listen": "test",
@@ -461,9 +589,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{PV_URL}}/api/identity/v1alpha/credentials",
+              "raw": "{{PROVIDER_MS_IDENTITY_URL}}/api/identity/v1alpha/credentials",
               "host": [
-                "{{PV_URL}}"
+                "{{PROVIDER_MS_IDENTITY_URL}}"
               ],
               "path": [
                 "api",
@@ -476,7 +604,7 @@
           "response": []
         },
         {
-          "name": "202-Make Credential Request",
+          "name": "122-Make Credential Request",
           "event": [
             {
               "listen": "test",
@@ -508,64 +636,18 @@
               }
             },
             "url": {
-              "raw": "{{PV_URL}}/api/identity/v1alpha/participants/{{PROVIDER_PARTICIPANT_ID_BASE64}}/credentials/request",
+              "raw": "{{PROVIDER_MS_IDENTITY_URL}}/api/identity/v1alpha/participants/{{PROVIDER_MS_PARTICIPANT_ID_BASE64}}/credentials/request",
               "host": [
-                "{{PV_URL}}"
+                "{{PROVIDER_MS_IDENTITY_URL}}"
               ],
               "path": [
                 "api",
                 "identity",
                 "v1alpha",
                 "participants",
-                "{{PROVIDER_PARTICIPANT_ID_BASE64}}",
+                "{{PROVIDER_MS_PARTICIPANT_ID_BASE64}}",
                 "credentials",
                 "request"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "203-Check if additional credential Issued",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is OK\", function() {",
-                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
-                  "})"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{PV_URL}}/api/identity/v1alpha/credentials",
-              "host": [
-                "{{PV_URL}}"
-              ],
-              "path": [
-                "api",
-                "identity",
-                "v1alpha",
-                "credentials"
               ]
             }
           },
@@ -875,7 +957,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"ContractRequest\",\n    \"counterPartyAddress\": \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"counterPartyId\": \"{{PROVIDER_ID}}\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"policy\": {\n        \"@type\": \"Offer\",\n        \"@id\": \"{{POLICY_ID_RDF}}\",\n        \"assigner\": \"{{PROVIDER_ID}}\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": {\n            \"action\": \"use\",\n            \"constraint\": {\n                \"leftOperand\": \"MembershipCredential\",\n                \"operator\": \"eq\",\n                \"rightOperand\": \"active\"\n            }\n        },\n        \"target\": \"request-rdf-service-file\"\n    },\n    \"callbackAddresses\": []\n}",
+                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"ContractRequest\",\n    \"counterPartyAddress\": \"{{PROVIDER_QNA_DSP_URL}}/api/dsp\",\n    \"counterPartyId\": \"{{PROVIDER_QNA_ID}}\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"policy\": {\n        \"@type\": \"Offer\",\n        \"@id\": \"{{POLICY_ID_RDF}}\",\n        \"assigner\": \"{{PROVIDER_QNA_ID}}\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": {\n            \"action\": \"use\",\n            \"constraint\": {\n                \"leftOperand\": \"MembershipCredential\",\n                \"operator\": \"eq\",\n                \"rightOperand\": \"active\"\n            }\n        },\n        \"target\": \"request-rdf-service-file\"\n    },\n    \"callbackAddresses\": []\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1112,7 +1194,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"assetId\": \"request-rdf-service-file\",\n    \"counterPartyAddress\":  \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"HttpProxy\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"HttpData-PULL\"\n}",
+                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"assetId\": \"request-rdf-service-file\",\n    \"counterPartyAddress\":  \"{{PROVIDER_QNA_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_QNA_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"HttpProxy\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"HttpData-PULL\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2348,6 +2430,146 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "700-Check",
+      "item": [
+        {
+          "name": "Get Provider QNA Assets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is >=200 and <300\", function () {",
+                  "    pm.expect(pm.response.code < 300 && pm.response.code >= 200).to.be.true",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"QuerySpec\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_QNA_URL}}/api/management/v3/assets/request",
+              "host": [
+                "{{PROVIDER_QNA_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "assets",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Provider MS Assets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is >=200 and <300\", function () {",
+                  "    pm.expect(pm.response.code < 300 && pm.response.code >= 200).to.be.true",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"QuerySpec\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_MS_URL}}/api/management/v3/assets/request",
+              "host": [
+                "{{PROVIDER_MS_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "assets",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Provider Federated Catalog Assets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is >=200 and <300\", function () {",
+                  "    pm.expect(pm.response.code < 300 && pm.response.code >= 200).to.be.true",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"@context\": {\n        \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\n    },\n    \"@type\": \"QuerySpec\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PROVIDER_CATALOG_URL}}/api/management/v3/assets/request",
+              "host": [
+                "{{PROVIDER_CATALOG_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "assets",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "auth": {
@@ -2403,7 +2625,7 @@
       "value": "http://localhost:7082"
     },
     {
-      "key": "PROVIDER_ID",
+      "key": "PROVIDER_QNA_ID",
       "value": "did:web:localhost%3A7093"
     },
     {
@@ -2415,7 +2637,7 @@
       "value": "http://localhost:8084"
     },
     {
-      "key": "PROVIDER_DSP_URL",
+      "key": "PROVIDER_QNA_DSP_URL",
       "value": "http://localhost:8192"
     },
     {
@@ -2455,7 +2677,7 @@
       "value": "MVD Consumer Participant"
     },
     {
-      "key": "PROVIDER_NAME",
+      "key": "PROVIDER_QNA_NAME",
       "value": "MVD Provider Participant"
     },
     {
@@ -2471,11 +2693,11 @@
       "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDgz"
     },
     {
-      "key": "PV_URL",
+      "key": "PROVIDER_QNA_IDENTITY_URL",
       "value": "http://localhost:7092"
     },
     {
-      "key": "PROVIDER_PARTICIPANT_ID_BASE64",
+      "key": "PROVIDER_QNA_PARTICIPANT_ID_BASE64",
       "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDkz"
     },
     {
@@ -2503,15 +2725,39 @@
       "value": ""
     },
     {
-      "key": "QUOTE_AUTHORIZATION_RDF",
-      "value": ""
-    },
-    {
       "key": "STANDALONE_CATALOG_API_CATALOG",
       "value": ""
     },
     {
       "key": "PROVIDER_MS_URL",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_MS_DSP_URL",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_MS_ID",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_MS_NAME",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_MS_IDENTITY_URL",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_MS_PARTICIPANT_ID_BASE64",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_CATALOG_URL",
+      "value": ""
+    },
+    {
+      "key": "QUOTE_AUTHORIZATION_RDF",
       "value": ""
     }
   ]
