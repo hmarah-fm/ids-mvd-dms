@@ -2400,13 +2400,43 @@
           "response": []
         },
         {
-          "name": "603-Consumer-Access-Provider-Connector-Catalog",
+          "name": "603-Consumer-Access-Provider-QNA-Connector-Catalog",
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
               "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7093\",\r\n  \"counterPartyAddress\": \"http://localhost:8192/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CONSUMER_URL}}/api/management/v3/catalog/request",
+              "host": [
+                "{{CONSUMER_URL}}"
+              ],
+              "path": [
+                "api",
+                "management",
+                "v3",
+                "catalog",
+                "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "603-Consumer-Access-Provider-MS-Connector-Catalog",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7193\",\r\n  \"counterPartyAddress\": \"http://localhost:8292/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
