@@ -26,19 +26,6 @@ DMS_PROPERTIES_PATH=demo/demo_dms.json
   - check: get dataset 1 with htpp-proxy
   - check: det dataset 2 with htpp-proxy
 - start the digital thread agent: task ST60
-  - check: datasets in the standalone catalog
   - check: 2 graphs in graphdb
   - check: inferred statement nextStep
 
-## Note 
-
-Actually, the federation is done by the provider federated catalog, not by the consumer standalone federated catalog:
-- this is a different config from the unimaas config
-- a closer config would be
-  - 2 provider identities (=participants)
-  - each with a connector exposing a catalog
-  - no provider catalog
-  - to do
-    - extra identity
-    - extra identityhub
-- open whether it is stronger or weaker

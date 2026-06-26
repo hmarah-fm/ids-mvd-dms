@@ -1,4 +1,5 @@
 {
-  "consumer-corp": "did:web:localhost%3A7083",
-  "provider-corp": "did:web:localhost%3A7093"
+  "consumer-corp":     "did:web:localhost%3A7083",
+  "provider-corp-qna": "did:web:localhost%3A7093",
+  "provider-corp-ms":  "did:web:localhost%3A7193"
 }

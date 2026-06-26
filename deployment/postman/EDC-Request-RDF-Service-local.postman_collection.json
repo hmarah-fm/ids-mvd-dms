@@ -1647,7 +1647,7 @@
                       "// get the policy id of \"asset-1\" and save it as an environment variable",
                       "if(pm.response.code < 300 && pm.response.code >= 200){",
                       "    if(pm.response.json().length > 0){",
-                      "        const rdf = pm.response.json()[0][\"dcat:catalog\"][0][\"dcat:dataset\"]",
+                      "        const rdf = pm.response.json()[1][\"dcat:dataset\"]",
                       "        //const rdf = dcat_datasets.find((asset) => asset[\"@id\"] == \"request-rdf-service-sparql\")",
                       "        pm.collectionVariables.set(\"POLICY_ID_RDF\", rdf[\"odrl:hasPolicy\"][\"@id\"]);",
                       "    }",
@@ -1760,7 +1760,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"ContractRequest\",\n    \"counterPartyAddress\": \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"counterPartyId\": \"{{PROVIDER_ID}}\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"policy\": {\n        \"@type\": \"Offer\",\n        \"@id\": \"{{POLICY_ID_RDF}}\",\n        \"assigner\": \"{{PROVIDER_ID}}\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": {\n            \"action\": \"use\",\n            \"constraint\": {\n                \"leftOperand\": \"MembershipCredential\",\n                \"operator\": \"eq\",\n                \"rightOperand\": \"active\"\n            }\n        },\n        \"target\": \"request-rdf-service-sparql\"\n    },\n    \"callbackAddresses\": []\n}",
+                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"@type\": \"ContractRequest\",\n    \"counterPartyAddress\": \"{{PROVIDER_MS_DSP_URL}}/api/dsp\",\n    \"counterPartyId\": \"{{PROVIDER_MS_ID}}\",\n    \"protocol\": \"dataspace-protocol-http\",\n    \"policy\": {\n        \"@type\": \"Offer\",\n        \"@id\": \"{{POLICY_ID_RDF}}\",\n        \"assigner\": \"{{PROVIDER_MS_ID}}\",\n        \"permission\": [],\n        \"prohibition\": [],\n        \"obligation\": {\n            \"action\": \"use\",\n            \"constraint\": {\n                \"leftOperand\": \"MembershipCredential\",\n                \"operator\": \"eq\",\n                \"rightOperand\": \"active\"\n            }\n        },\n        \"target\": \"request-rdf-service-sparql\"\n    },\n    \"callbackAddresses\": []\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1997,7 +1997,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"assetId\": \"request-rdf-service-sparql\",\n    \"counterPartyAddress\":  \"{{PROVIDER_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"HttpProxy\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"HttpData-PULL\"\n}",
+                  "raw": "{\n    \"@context\": [\n        \"https://w3id.org/edc/connector/management/v0.0.1\"\n    ],\n    \"assetId\": \"request-rdf-service-sparql\",\n    \"counterPartyAddress\":  \"{{PROVIDER_MS_DSP_URL}}/api/dsp\",\n    \"connectorId\": \"{{PROVIDER_MS_ID}}\",\n    \"contractId\": \"{{CONTRACT_AGREEMENT_ID_RDF}}\",\n    \"dataDestination\": {\n        \"type\": \"HttpProxy\"\n    },\n    \"protocol\": \"dataspace-protocol-http\",\n    \"transferType\": \"HttpData-PULL\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
