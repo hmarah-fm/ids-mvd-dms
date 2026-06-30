@@ -7,3 +7,6 @@
 [submodule "launchers/standalone-federated-catalog"]
 	path = launchers/standalone-federated-catalog
 	url = https://github.com/Flanders-Make-vzw/standalone-federated-catalog.git
+[submodule "central-kg"]
+	path = central-kg
+	url = https://github.com/UniMaaS-project-eu/central-kg.git

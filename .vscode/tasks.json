@@ -94,7 +94,7 @@
         {
             "label": "FP02 Fuseki Provider Load Data Example",
             "type": "shell",
-            "command": "fuseki/provider/load_data_provider.sh fuseki/provider/example_provider_data.ttl",
+            "command": "fuseki/provider/load_data_provider.sh demo/dataset_1/subgraph_pc1pc2_external.ttl",
             "problemMatcher": []
         },
         {
@@ -104,27 +104,32 @@
             "problemMatcher": []
         },
         {
-            "label": "GD01 Start GraphDB",
+            "label": "GC01 Consumer GraphDB Start ",
             "type": "shell",
-            "command": "graphdb/start.sh",
+            "options": {"cwd": "${workspaceFolder}/central-kg/graphdb"},
+            "runOptions": {},
+            "command": "docker compose up",
             "problemMatcher": []
         },
         {
-            "label": "GD02 Stop GraphDB",
+            "label": "GC02 Consumer GraphDB Init repo",
             "type": "shell",
-            "command": "graphdb/stop.sh",
+            "options": {"cwd": "${workspaceFolder}/central-kg/graphdb"},
+            "command": "scripts/init-repo.sh",
             "problemMatcher": []
         },
         {
-            "label": "GD03 Create Inference GraphDB",
-            "type": "shell",
-            "command": "graphdb/create_inference_rule.sh",
-            "problemMatcher": []
-        },
-        {
-            "label": "GD04 Wipe GraphDB",
+            "label": "GC03 Consumer GraphDB Wipe GraphDB",
             "type": "shell",
             "command": "graphdb/delete_data.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "GC04 Consumer GraphDB Stop",
+            "type": "shell",
+            "options": {"cwd": "${workspaceFolder}/central-kg/graphdb"},
+            "runOptions": {},
+            "command": "docker compose down",
             "problemMatcher": []
         },
         {
