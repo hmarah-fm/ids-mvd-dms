@@ -14,18 +14,23 @@ DMS_PROPERTIES_PATH=demo/demo_dms.json
 
 ## run the demo
 
+### Preliminaries
 - make sure Keycloak is running
 - run all auxiliary services: task ST98
   - check provider fuseki loaded with dataset 1
-  - check graphdb empty with the rule nextStep
-  - check postgres empty
 - start all the edc processes: task ST99
 - do the seeding: task ST50
 - run the postman folders 100, 200, 300, 410, 510
   - check dataset 1 and 2 in cached catalog
   - check: get dataset 1 with htpp-proxy
   - check: det dataset 2 with htpp-proxy
+
+### Run the digital thread agent
+- make sure
+  - consumer graph db is started and flushed
+  - consumer postgres is started and flushed
 - start the digital thread agent: task ST60
+  - check: 2 lines in posgres table 'inserted datasets'
   - check: 2 graphs in graphdb
   - check: inferred statement nextStep
 
