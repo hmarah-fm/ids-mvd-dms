@@ -844,9 +844,10 @@
                       "// get the policy id of \"asset-1\" and save it as an environment variable",
                       "if(pm.response.code < 300 && pm.response.code >= 200){",
                       "    if(pm.response.json().length > 0){",
-                      "        const dcat_datasets = pm.response.json()[0][\"dcat:catalog\"][0][\"dcat:dataset\"]",
-                      "        const rdf = dcat_datasets.find((asset) => asset[\"@id\"] == \"request-rdf-service-file\")",
-                      "        pm.collectionVariables.set(\"POLICY_ID_RDF\", rdf[\"odrl:hasPolicy\"][\"@id\"]);",
+                      "        const response = pm.response.json();",
+                      "        // note: assume 1 dataset in the catalot",
+                      "        const dataset = response.find(asset => asset[\"dcat:dataset\"][\"@id\"]==\"request-rdf-service-file\")",
+                      "        pm.collectionVariables.set(\"POLICY_ID_RDF\", dataset[\"dcat:dataset\"][\"odrl:hasPolicy\"][\"@id\"]);",
                       "    }",
                       "}",
                       "",
@@ -909,8 +910,8 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"POLICY_ID_flashlight\")){",
-                      "    throw new Error('Policy-ID of flashlight Asset is not yet available, please execute request \"Get Cached Catalog\" first!');",
+                      "if(!pm.collectionVariables.has(\"POLICY_ID_RDF\")){",
+                      "    throw new Error('Policy-ID of Asset is not yet available, please execute request \"Get Cached Catalog\" first!');",
                       "}"
                     ],
                     "type": "text/javascript",
@@ -1647,9 +1648,10 @@
                       "// get the policy id of \"asset-1\" and save it as an environment variable",
                       "if(pm.response.code < 300 && pm.response.code >= 200){",
                       "    if(pm.response.json().length > 0){",
-                      "        const rdf = pm.response.json()[1][\"dcat:dataset\"]",
-                      "        //const rdf = dcat_datasets.find((asset) => asset[\"@id\"] == \"request-rdf-service-sparql\")",
-                      "        pm.collectionVariables.set(\"POLICY_ID_RDF\", rdf[\"odrl:hasPolicy\"][\"@id\"]);",
+                      "        const response = pm.response.json();",
+                      "        // note: assume 1 dataset in the catalot",
+                      "        const dataset = response.find(asset => asset[\"dcat:dataset\"][\"@id\"]==\"request-rdf-service-sparql\")",
+                      "        pm.collectionVariables.set(\"POLICY_ID_RDF\", dataset[\"dcat:dataset\"][\"odrl:hasPolicy\"][\"@id\"]);",
                       "    }",
                       "}",
                       "",
@@ -1712,8 +1714,8 @@
                   "listen": "prerequest",
                   "script": {
                     "exec": [
-                      "if(!pm.collectionVariables.has(\"POLICY_ID_flashlight\")){",
-                      "    throw new Error('Policy-ID of flashlight Asset is not yet available, please execute request \"Get Cached Catalog\" first!');",
+                      "if(!pm.collectionVariables.has(\"POLICY_ID_RDF\")){",
+                      "    throw new Error('Policy-ID of Asset is not yet available, please execute request \"Get Cached Catalog\" first!');",
                       "}"
                     ],
                     "type": "text/javascript",
@@ -2673,14 +2675,6 @@
     {
       "key": "PROVIDER_PUBLIC_API",
       "value": "http://localhost:12001"
-    },
-    {
-      "key": "POLICY_ID_gearbox",
-      "value": ""
-    },
-    {
-      "key": "POLICY_ID_flashlight",
-      "value": ""
     },
     {
       "key": "AUTHORIZATION",
