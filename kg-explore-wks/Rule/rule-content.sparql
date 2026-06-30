@@ -1,5 +1,0 @@
-PREFIX sys: <http://www.ontotext.com/owlim/system#>
-
-SELECT * {
-    ?content sys:exploreRuleset "unimaas"
-}

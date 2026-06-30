@@ -1,5 +1,0 @@
-PREFIX sys: <http://www.ontotext.com/owlim/system#>
-
-SELECT ?state ?ruleset {
-    ?state sys:listRulesets ?ruleset
-}
