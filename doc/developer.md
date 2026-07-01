@@ -45,8 +45,6 @@ Port number conventions 8ABC
     - 818*  connector
   - consumer connector
     - 808*  connector
-  - provider catalog connector 
-    - 809*  connector
   - provider qna connector
     - 819*  connector
     - 12001 public

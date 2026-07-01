@@ -6,15 +6,6 @@ echo
 echo Starting seeding ...
 echo
 
-## Seed linked assets to Catalog Server
-newman run \
-  --folder "Seed Catalog Server" \
-  --env-var "HOST=http://127.0.0.1:8091" \
-  --env-var "PROVIDER_QNA_DSP_URL=http://localhost:8192" \
-  --env-var "PROVIDER_MF_DSP_URL=http://localhost:8292" \
-  ./deployment/postman/MVD.postman_collection.json 
-
-
 ## Seed identity data to identityhubs
 API_KEY="c3VwZXItdXNlcg==.c3VwZXItc2VjcmV0LWtleQo="
 
@@ -132,11 +123,7 @@ SECRETS_DATA=$(jq -n --arg secret "$clientSecret" \
 echo
 echo "Provider QNA client secret $clientSecret"
 echo
-echo "Set provider qna secret in provider catalog server"
-curl -sL -X POST http://localhost:8091/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
-echo
-echo
-echo "Set provider qan secret in provider connector qna"
+echo "Set provider qna secret in provider connector qna"
 curl -sL -X POST http://localhost:8191/api/management/v3/secrets -H "x-api-key: password" -H "Content-Type: application/json" -d "$SECRETS_DATA"
 echo
 

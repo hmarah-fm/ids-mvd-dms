@@ -121,7 +121,8 @@
         {
             "label": "GC03 Consumer GraphDB Wipe GraphDB",
             "type": "shell",
-            "command": "graphdb/delete_data.sh",
+            "options": {"cwd": "${workspaceFolder}/central-kg/graphdb"},
+            "command": "scripts/delete_data.sh",
             "problemMatcher": []
         },
         {
@@ -187,12 +188,6 @@
             "problemMatcher": []
         },
         {
-            "label": "ST40 Start Provider Catalog Server",
-            "type": "shell",
-            "command": "scripts/startups/start-catalog-server.sh",
-            "problemMatcher": []
-        },
-        {
             "label": "ST41 Start Standalone Federated Catalog server",
             "type": "shell",
             "command": "scripts/startups/start-standalone-catalog.sh",
@@ -235,7 +230,6 @@
                 "ST30 Start Connector Consumer",
                 "ST31 Start Connector Provider QnA",
                 "ST32 Start Connector Provider Manufacturing",
-                "ST40 Start Provider Catalog Server",
                 "ST41 Start Standalone Federated Catalog server"
             ],
             "dependsOrder": "parallel",
