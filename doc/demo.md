@@ -47,7 +47,9 @@ Provided by provider QNA, containing 'Internal data':
 
 
 ### Preliminaries
-- make sure Keycloak is running
+- make those services are running
+  - keycloak
+  - provider fuseki
 - start all the edc processes: `task ST99`
 - do the seeding: task `ST50`
 - run the postman folders `100`, `200`, `300`, `410`, `510`
@@ -57,7 +59,7 @@ Provided by provider QNA, containing 'Internal data':
 
 ### Run the digital thread agent
 - make sure
-  - consumer graph db is started and flushed
+  - consumer graphdb is started and flushed
   - consumer postgres is started and flushed
 - start the digital thread agent: task `ST60`
   - check: 2 lines in posgres table 'inserted datasets'
