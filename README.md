@@ -23,6 +23,8 @@ For user: [doc](./doc/user.md).
 
 For developer: [doc](./doc/developer.md)
 
+About the demo: [doc](./doc/demo.md)
+
 ## Features
 
 This repository implements the following components and features.
@@ -45,27 +47,36 @@ The 2 deployments:
     - the [docker file](./deployment/docker/dataplane-eye.Dockerfile) (TODO)
     - the terraform files and modules in folder [deployment](./deployment/) (TODO)
 
-The set-up is composed of 2 participants: the `consumer` and the `provider`.
+The set-up is composed of 3 participants:
+- the `consumer`
+  - the dataspace platform for interoperability and discovery
+- 2 stakeholder participants, or providers 
+  - the `provider qna`
+  - the `provider ms`.
+
+The following applications are deployed
 - dataspace applications
-  - issuer service
+  - `issuer service`
 - consumer applications
-  - fuseki triple store
+  - `fuseki triple store`
     - for adding the datasets fetched by the digital thread
-    - TODO: replace by graphdb
-  - keycloak, for regitering the participants
-  - identity hub
-  - connector
-  - standalone federated catalog server
+    - NOT used
+  - `graphdb triple store`
+    - the central kg
+  - `keycloak`
+    - for regitering the participants
+  - `identity hub`
+  - `connector`
+  - `standalone federated catalog server`
     - federating the participants registered in keycloak
-  - digital thread agent
+  - `digital thread agent`
     - with a postgres db tracking the datasets subscribed
 - provider applications
-  - fuseki triple store
+  - `fuseki triple store`
     - for exposing datasets to the dataspace
-  - identity hub
-  - 2 connectors
-  - catalog server
-    - federating the provider catalogs (2)
+    - shared between the 2 providers
+  - `identity hub`
+  - `connector`
 
 
  
