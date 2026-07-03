@@ -2,16 +2,13 @@ version: '3.9'
 
 services:
   consumer-identity-hub:
-    image: ontotext/graphdb:10.1.2f
+    image: identity-hub
     hostname: consumer-identity-hub
     container_name: consumer-identity-hub
     ports:
       - "7080:7080"
     networks:
       - ids-mvd-dms
-    entrypoint:
-      - echo
-      - michel
 
 networks:
   ids-mvd-dms:
