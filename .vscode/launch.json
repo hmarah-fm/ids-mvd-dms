@@ -47,7 +47,7 @@
             "console": "internalConsole",
             "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
             "envFile": "${workspaceFolder}/deployment/assets/env/standalone-catalog.env",
-            "classPaths": ["${workspaceFolder}/launchers/standalone-federated-catalog/build/libs/standalone-catalog.jar"],
+            "classPaths": ["${workspaceFolder}/launchers/standalone-federated-catalog/build/libs/standalone-federated-catalog.jar"],
             "args": "--log-level=debug",
 //            "args": "--log-level=info",
             "projectName": "runtime-embedded"
