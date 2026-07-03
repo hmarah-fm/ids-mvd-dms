@@ -84,3 +84,20 @@ Issuer service
 ### Docker
 
 For building the images, use gradle task `dockerize`.
+
+### Config
+
+The env file contains java properties like `edc.iam.sts.privatekey.alias`.
+
+They are equivalent to env vars like `EDC_IAM_STS_PRIVATEKEY_ALIAS`.
+
+Java properties can be passed
+- individually on the command line prefixed by `-D`
+- as a file with the option `-Dedc.fs.config`
+- as a file with `env $(cat myenvfile) java ...`  (and filter the comments)
+
+Env vars can be passed
+- individually with `export VAR=value`
+- as a file with `env $(cat myenvfile) java ...` (and filter the comments, not tested)
+
+Note: the java properties in the env files are no env var: the dot in the name is not allowed. So this vars cannot be used in a shell. But using the env command, these vars will work in java or in node. In java, use `getenv('path.name')`. In node, use `proces.env["path.name"]`.
