@@ -22,4 +22,4 @@ ENV WEB_HTTP_PATH="/api"
 # ARG can not be used in ENTRYPOINT so storing value in an ENV variable
 ENV ENV_JVM_ARGS=$JVM_ARGS
 ENV ENV_APPINSIGHTS_AGENT_VERSION=$APPINSIGHTS_AGENT_VERSION
-ENTRYPOINT [ "sh", "-c", "exec java $ENV_JVM_ARGS -jar identity-hub.jar --log-level=debug"]
+ENTRYPOINT [ "sh", "-c", "exec java $ENV_JVM_ARGS -Dedc.fs.config=/etc/app/env-file -jar identity-hub.jar --log-level=debug"]
