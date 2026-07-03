@@ -77,3 +77,10 @@ Issuer service
 
 ### Keycloak
 - 5000: admin UI and management api
+
+
+## Usefult information
+
+### Docker
+
+For building the images, use gradle task `dockerize`.
