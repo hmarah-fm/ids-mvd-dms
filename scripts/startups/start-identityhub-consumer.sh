@@ -1,6 +1,7 @@
 #!/bin/bash
-# Start IdentityHub Consumer
 
-JAVA_PROPS=$(grep -v '^#' deployment/assets/env/consumer_identityhub.env | sed 's/^/-D/')
+envfile="deployment/assets/env/consumer_identityhub.env"
+jar="launchers/identity-hub/build/libs/identity-hub.jar"
 
-java $JAVA_PROPS -jar launchers/identity-hub/build/libs/identity-hub.jar --log-level=debug
+env $(cat $envfile | grep -v '^#') java -jar $jar --log-level=debug
+

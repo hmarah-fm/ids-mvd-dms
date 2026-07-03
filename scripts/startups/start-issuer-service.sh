@@ -1,6 +1,6 @@
 #!/bin/bash
-# Start Provider Catalog Server
 
-JAVA_PROPS=$(grep -v '^#' deployment/assets/env/issuerservice.env | sed 's/^/-D/')
+envfile="deployment/assets/env/issuerservice.env"
+jar="launchers/issuerservice/build/libs/issuerservice.jar"
 
-java $JAVA_PROPS -jar launchers/issuerservice/build/libs/issuerservice.jar --log-level=debug
+env $(cat $envfile | grep -v '^#') java -jar $jar --log-level=debug

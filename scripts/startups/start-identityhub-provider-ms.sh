@@ -1,6 +1,7 @@
 #!/bin/bash
-# Start IdentityHub Provider
+envfile="deployment/assets/env/provider_identityhub-ms.env"
+jar="launchers/identity-hub/build/libs/identity-hub.jar" 
 
-JAVA_PROPS=$(grep -v '^#' deployment/assets/env/provider_identityhub-ms.env | sed 's/^/-D/')
+env $(cat $envfile | grep -v '^#') java -jar $jar --log-level=debug
 
-java $JAVA_PROPS -jar launchers/identity-hub/build/libs/identity-hub.jar --log-level=debug
+

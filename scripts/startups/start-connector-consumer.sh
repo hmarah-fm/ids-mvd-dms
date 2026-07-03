@@ -1,6 +1,7 @@
 #!/bin/bash
-# Start Connector Consumer
 
-JAVA_PROPS=$(grep -v '^#' deployment/assets/env/consumer_connector.env | sed 's/^/-D/')
+envfile="deployment/assets/env/consumer_connector.env"
+jar="launchers/runtime-embedded/build/libs/runtime-embedded.jar"
 
-java $JAVA_PROPS -jar launchers/runtime-embedded/build/libs/runtime-embedded.jar --log-level=debug
+env $(cat $envfile | grep -v '^#') java -jar $jar --log-level=debug
+

@@ -1,7 +1,6 @@
 #!/bin/bash
-# Start Provider Catalog Server
 
-JAVA_PROPS=$(grep -v '^\s*$' deployment/assets/env/standalone-catalog.env | grep -v '^#' | sed 's/^/-D/')
-echo $JAVA_PROPS
+envfile="deployment/assets/env/standalone-catalog.env"
+jar="launchers/standalone-federated-catalog/build/libs/standalone-catalog.jar"
 
-java $JAVA_PROPS -Dweb.http.default.enabled=true -jar launchers/standalone-federated-catalog/build/libs/standalone-catalog.jar --log-level=debug
+env $(cat $envfile | grep -v '^#') java -jar $jar --log-level=debug

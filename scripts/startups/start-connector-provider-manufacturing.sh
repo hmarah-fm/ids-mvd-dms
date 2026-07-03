@@ -1,6 +1,7 @@
 #!/bin/bash
-# Start Connector Provider Manufacturing
 
-JAVA_PROPS=$(grep -v '^#' deployment/assets/env/provider_connector_manufacturing.env | sed 's/^/-D/')
+envfile="deployment/assets/env/provider_connector_manufacturing.env"
+jar="launchers/runtime-embedded/build/libs/runtime-embedded.jar"
 
-java $JAVA_PROPS -jar launchers/runtime-embedded/build/libs/runtime-embedded.jar --log-level=debug
+env $(cat $envfile | grep -v '^#') java -jar $jar --log-level=debug
+
