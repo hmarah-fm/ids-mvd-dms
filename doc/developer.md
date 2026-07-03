@@ -1,5 +1,9 @@
 # Developer documentation
 
+## Prerequisites
+
+Java 17 must be installed on the system.
+
 ## Identities
 
 Participants: did:web:localhost%3A7AB3

@@ -6,7 +6,19 @@
     "configurations": [
         {
             "type": "java",
-            "name": "30: Connector_consumer.run",
+            "name": "20: Consumer IdentityHub",
+            "request": "launch",
+            "console": "internalConsole",
+            "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
+            "envFile": "${workspaceFolder}/deployment/assets/env/consumer_identityhub.env",
+            "classPaths": ["${workspaceFolder}/launchers/identity-hub/build/libs/identity-hub.jar"],
+//            "args": "--log-level=info",
+            "args": "--log-level=debug",
+            "projectName": "runtime-embedded"
+        },
+        {
+            "type": "java",
+            "name": "30: Consumer Connector",
             "request": "launch",
             "console": "internalConsole",
             "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
@@ -18,7 +30,7 @@
         },
         {
             "type": "java",
-            "name": "31: Connector_provider-qna_.run",
+            "name": "31: Provider Connector",
             "request": "launch",
             "console": "internalConsole",
             "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
@@ -30,7 +42,7 @@
         },
         {
             "type": "java",
-            "name": "41: Standalone federated catalog server",
+            "name": "41: Consumer Standalone federated catalog",
             "request": "launch",
             "console": "internalConsole",
             "mainClass": "org.eclipse.edc.boot.system.runtime.BaseRuntime",
