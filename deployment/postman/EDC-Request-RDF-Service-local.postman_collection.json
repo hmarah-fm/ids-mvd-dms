@@ -277,54 +277,10 @@
       ]
     },
     {
-      "name": "100-CONSUMER-IDHub-VerifiableCredential",
+      "name": "100-Make-IDHub-VerifiableCredential",
       "item": [
         {
-          "name": "101-Get All Credentials",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is OK\", function() {",
-                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
-                  "})"
-                ],
-                "type": "text/javascript",
-                "packages": {}
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{CS_URL}}/api/identity/v1alpha/credentials",
-              "host": [
-                "{{CS_URL}}"
-              ],
-              "path": [
-                "api",
-                "identity",
-                "v1alpha",
-                "credentials"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "102-Make Credential Request",
+          "name": "102-Make Consumer Credential Request",
           "event": [
             {
               "listen": "test",
@@ -372,99 +328,9 @@
             }
           },
           "response": []
-        }
-      ],
-      "auth": {
-        "type": "apikey",
-        "apikey": [
-          {
-            "key": "value",
-            "value": "{{ISSUER_ADMIN_API_TOKEN}}",
-            "type": "string"
-          },
-          {
-            "key": "key",
-            "value": "x-api-key",
-            "type": "string"
-          }
-        ]
-      },
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              ""
-            ]
-          }
         },
         {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "110-PROVIDER-QNA-IDHub-VerifiableCredential",
-      "item": [
-        {
-          "name": "111-Get All Credentials",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is OK\", function() {",
-                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
-                  "})"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{PROVIDER_QNA_IDENTITY_URL}}/api/identity/v1alpha/credentials",
-              "host": [
-                "{{PROVIDER_QNA_IDENTITY_URL}}"
-              ],
-              "path": [
-                "api",
-                "identity",
-                "v1alpha",
-                "credentials"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "112-Make Credential Request",
+          "name": "104-Make Provider Qna Credential Request",
           "event": [
             {
               "listen": "test",
@@ -512,99 +378,9 @@
             }
           },
           "response": []
-        }
-      ],
-      "auth": {
-        "type": "apikey",
-        "apikey": [
-          {
-            "key": "value",
-            "value": "{{ISSUER_ADMIN_API_TOKEN}}",
-            "type": "string"
-          },
-          {
-            "key": "key",
-            "value": "x-api-key",
-            "type": "string"
-          }
-        ]
-      },
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              ""
-            ]
-          }
         },
         {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              ""
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "120-PROVIDER-MS-IDHub-VerifiableCredential",
-      "item": [
-        {
-          "name": "121-Get All Credentials",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status is OK\", function() {",
-                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
-                  "})"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{PROVIDER_MS_IDENTITY_URL}}/api/identity/v1alpha/credentials",
-              "host": [
-                "{{PROVIDER_MS_IDENTITY_URL}}"
-              ],
-              "path": [
-                "api",
-                "identity",
-                "v1alpha",
-                "credentials"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "122-Make Credential Request",
+          "name": "106-Make Provider MS Credential Request",
           "event": [
             {
               "listen": "test",
@@ -648,6 +424,142 @@
                 "{{PROVIDER_MS_PARTICIPANT_ID_BASE64}}",
                 "credentials",
                 "request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "112-Get Consumer Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is OK\", function() {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{CS_URL}}/api/identity/v1alpha/credentials",
+              "host": [
+                "{{CS_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "credentials"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "114-Get Provider Qna Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is OK\", function() {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{PROVIDER_QNA_IDENTITY_URL}}/api/identity/v1alpha/credentials",
+              "host": [
+                "{{PROVIDER_QNA_IDENTITY_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "credentials"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "116-Get Provider Ms Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status is OK\", function() {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204])",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{PROVIDER_MS_IDENTITY_URL}}/api/identity/v1alpha/credentials",
+              "host": [
+                "{{PROVIDER_MS_IDENTITY_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "credentials"
               ]
             }
           },
