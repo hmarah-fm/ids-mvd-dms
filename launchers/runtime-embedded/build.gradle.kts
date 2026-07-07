@@ -28,10 +28,6 @@ dependencies {
         exclude(group = "org.eclipse.edc", "data-plane-selector-client")
     }
 
-    // RDF extensions here
-    //runtimeOnly(project(":extensions:digital-thread"))
-   // runtimeOnly(project(":extensions:edc-rdf:data-plane-rdf-spi"))
-   // runtimeOnly(project(":extensions:edc-rdf:control-plane-rdf"))
 }
 
 tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
