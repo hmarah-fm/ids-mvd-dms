@@ -11,8 +11,8 @@ Participants: did:web:localhost%3A7AB3
   - 8: consumer
   - 9: provider
 - A (hundred's, second char in port): identity for the side
-  - 8: consumer
-  - 9: provider
+  - 0: provider qna
+  - 1: provider ms
 
 1 consumer and 2 providers:
 -  did:web:localhost%3A7083 consumer

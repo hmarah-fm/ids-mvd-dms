@@ -10,6 +10,31 @@ dataset_1 is registered by the connector QNA and dataset_2 is registered by the 
 
 This DEMO setup, uses the [property file](config/demo_dms.json) as the properties for the digital thread and should be set in the [digital-thread.env](deployment/assets/env/digital_thread.env).
 
+## Architecture
+
+### Consumer participant
+
+The consumer is the dataspace central platform, featuring these components
+- a identity hub
+- a connector: 
+  - allowing direct access to the published datasets
+  - implementing a cached catalog
+    - federating the participant catalogs from a list of participants
+- a standalone federated catalog
+  - federating the participant catalogs from the keycloak clients
+- a digital thread agent, with a postgres database
+- a graphdb instance, with an api
+- a digital thread agent
+  - using the standalone federated catalog
+  - retrieving the datasets via the connector
+   
+### Provider participants
+
+The providers are the dataspace stakeholders, featuring these components
+- a identity hub
+- a connector, publishing RDF datasets, controling access to the datasets
+- a fuseki instance
+
 ## Run the demo
 
 ### Data preparation
