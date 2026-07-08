@@ -50,6 +50,7 @@ edc-spi-sts = { module = "org.eclipse.edc:sts-spi", version.ref = "edc" }
 edc-api-catalog = { module = "org.eclipse.edc:catalog-api", version.ref = "edc" }
 
 edc-core-spi = { module = "org.eclipse.edc:core-spi", version.ref = "edc" }
+edc-data-plane-spi = { module = "org.eclipse.edc:data-plane-spi", version.ref = "edc" }
 
 
 # EDC lib dependencies
