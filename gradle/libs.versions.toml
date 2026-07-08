@@ -49,6 +49,8 @@ edc-spi-identity-did = { module = "org.eclipse.edc:identity-did-spi", version.re
 edc-spi-sts = { module = "org.eclipse.edc:sts-spi", version.ref = "edc" }
 edc-api-catalog = { module = "org.eclipse.edc:catalog-api", version.ref = "edc" }
 
+edc-core-spi = { module = "org.eclipse.edc:core-spi", version.ref = "edc" }
+
 
 # EDC lib dependencies
 edc-lib-jws2020 = { module = "org.eclipse.edc:jws2020-lib", version.ref = "edc" }
