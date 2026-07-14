@@ -42,7 +42,7 @@
           "response": []
         },
         {
-          "name": "002-Create provider QNA participant",
+          "name": "001-Create provider QNA participant",
           "request": {
             "method": "POST",
             "header": [],
@@ -74,7 +74,7 @@
           "response": []
         },
         {
-          "name": "002-Create provider MS participant",
+          "name": "001-Create provider MS participant",
           "request": {
             "method": "POST",
             "header": [],
@@ -102,6 +102,40 @@
               ]
             },
             "description": "Generated from cURL: curl -sL -X POST 'http://localhost:10013/api/admin/v1alpha/holders' \\\n-H 'Content-Type: application/json' \\\n-d '{ \"did\": \"did:web:localhost%3A7093\", \"participantId\": \"did:web:localhost%3A7093\", \"name\": \"Provider Participant\"}'"
+          },
+          "response": []
+        },
+        {
+          "name": "002-Query Participants",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{ISSUER_ADMIN_URL}}/api/admin/v1alpha/participants/{{ISSUER_CONTEXT_ID}}/holders/query",
+              "host": [
+                "{{ISSUER_ADMIN_URL}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "v1alpha",
+                "participants",
+                "{{ISSUER_CONTEXT_ID}}",
+                "holders",
+                "query"
+              ]
+            },
+            "description": "Query attestation definitions"
           },
           "response": []
         },

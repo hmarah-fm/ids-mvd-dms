@@ -30,8 +30,8 @@ DATA_CONSUMER=$(jq -n --arg pem "$PEM_CONSUMER" '{
              }
            ],
            "active": true,
-           "participantId": "did:web:localhost%3A7083",
-           "did": "did:web:localhost%3A7083",
+           "participantId": "did:web:localhost%3A7083:consumer",
+           "did": "did:web:localhost%3A7083:consumer",
            "key":{
                "keyId": "did:web:localhost%3A7083#key-1",
                "privateKeyAlias": "key-1",
@@ -93,8 +93,8 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
               }
             ],
             "active": true,
-            "participantId": "did:web:localhost%3A7093",
-            "did": "did:web:localhost%3A7093",
+            "participantId": "did:web:localhost%3A7093:provider1",
+            "did": "did:web:localhost%3A7093:provider1",
             "key":{
                 "keyId": "did:web:localhost%3A7093#key-1",
                 "privateKeyAlias": "key-1",
@@ -149,8 +149,8 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
               }
             ],
             "active": true,
-            "participantId": "did:web:localhost%3A7193",
-            "did": "did:web:localhost%3A7193",
+            "participantId": "did:web:localhost%3A7193:provider2",
+            "did": "did:web:localhost%3A7193:provider2",
             "key":{
                 "keyId": "did:web:localhost%3A7193#key-1",
                 "privateKeyAlias": "key-1",
