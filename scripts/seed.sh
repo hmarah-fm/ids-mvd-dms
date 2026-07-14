@@ -33,7 +33,7 @@ DATA_CONSUMER=$(jq -n --arg pem "$PEM_CONSUMER" '{
            "participantId": "did:web:localhost%3A7083:consumer",
            "did": "did:web:localhost%3A7083:consumer",
            "key":{
-               "keyId": "did:web:localhost%3A7083#key-1",
+               "keyId": "did:web:localhost%3A7083:consumer#key-1",
                "privateKeyAlias": "key-1",
                "publicKeyPem":"\($pem)"
            }
@@ -96,7 +96,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
             "participantId": "did:web:localhost%3A7093:provider1",
             "did": "did:web:localhost%3A7093:provider1",
             "key":{
-                "keyId": "did:web:localhost%3A7093#key-1",
+                "keyId": "did:web:localhost%3A7093:provider1#key-1",
                 "privateKeyAlias": "key-1",
                 "publicKeyPem":"\($pem)"
             }
@@ -152,7 +152,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
             "participantId": "did:web:localhost%3A7193:provider2",
             "did": "did:web:localhost%3A7193:provider2",
             "key":{
-                "keyId": "did:web:localhost%3A7193#key-1",
+                "keyId": "did:web:localhost%3A7193:provider2#key-1",
                 "privateKeyAlias": "key-1",
                 "publicKeyPem":"\($pem)"
             }
