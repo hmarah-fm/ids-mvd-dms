@@ -20,7 +20,7 @@ DATA_CONSUMER=$(jq -n --arg pem "$PEM_CONSUMER" '{
            "serviceEndpoints":[
              {
                 "type": "CredentialService",
-                "serviceEndpoint": "http://localhost:7081/api/credentials/v1/participants/ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDgz",
+                "serviceEndpoint": "http://localhost:7081/api/credentials/v1/participants/ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDgzOmNvbnN1bWVy",
                 "id": "consumer-credentialservice-1"
              },
              {
@@ -83,7 +83,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
             "serviceEndpoints":[
               {
                  "type": "CredentialService",
-                 "serviceEndpoint": "http://localhost:7091/api/credentials/v1/participants/ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDkz",
+                 "serviceEndpoint": "http://localhost:7091/api/credentials/v1/participants/ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDkzOnByb3ZpZGVyMQ==",
                  "id": "provider-credentialservice-1"
               },
               {
@@ -139,7 +139,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
             "serviceEndpoints":[
               {
                  "type": "CredentialService",
-                 "serviceEndpoint": "http://localhost:7191/api/credentials/v1/participants/ZGlkOndlYjpsb2NhbGhvc3QlM0E3MTkz",
+                 "serviceEndpoint": "http://localhost:7191/api/credentials/v1/participants/ZGlkOndlYjpsb2NhbGhvc3QlM0E3MTkzOnByb3ZpZGVyMg==",
                  "id": "provider-ms-credentialservice-1"
               },
               {
