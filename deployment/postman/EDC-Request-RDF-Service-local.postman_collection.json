@@ -598,6 +598,146 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "120 Get Consumer all participants",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "c3VwZXItdXNlcg==.c3VwZXItc2VjcmV0LWtleQo=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{CS_URL}}/api/identity/v1alpha/participants",
+              "host": [
+                "{{CS_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "participants"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "130 Get Consumer All DID Documents",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "c3VwZXItdXNlcg==.c3VwZXItc2VjcmV0LWtleQo=",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CS_URL}}/api/identity/v1alpha/dids",
+              "host": [
+                "{{CS_URL}}"
+              ],
+              "path": [
+                "api",
+                "identity",
+                "v1alpha",
+                "dids"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "auth": {
@@ -2328,7 +2468,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7093\",\r\n  \"counterPartyAddress\": \"http://localhost:8192/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7093:provider1\",\r\n  \"counterPartyAddress\": \"http://localhost:8192/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
@@ -2358,7 +2498,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7193\",\r\n  \"counterPartyAddress\": \"http://localhost:8292/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
+              "raw": "{\r\n  \"@context\": {\r\n    \"@vocab\": \"https://w3id.org/edc/v0.0.1/ns/\"\r\n  },\r\n  \"counterPartyId\": \"did:web:localhost%3A7193:provider2\",\r\n  \"counterPartyAddress\": \"http://localhost:8292/api/dsp/2025-1\",\r\n  \"protocol\": \"dataspace-protocol-http:2025-1\"\r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
