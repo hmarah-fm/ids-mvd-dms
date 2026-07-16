@@ -52,19 +52,29 @@
         {
             "label": "PC01 Postgres Consumer Start Postgres",
             "type": "shell",
-            "command": "launchers/digital-thread/postgres/start_postgres.sh",
+            "options": {"cwd": "${workspaceFolder}/central-kg"},
+            "command": "docker compose up central-platform-postgres",
             "problemMatcher": []
         },
         {
-            "label": "PC02 Postgres Consumer Query inderted datasets",
+            "label": "PC02 Postgres Consumer Create table",
             "type": "shell",
-            "command": "launchers/digital-thread/postgres/query-inserted-assets.sh",
+            "options": {"cwd": "${workspaceFolder}/central-kg"},
+            "command": " ./postgres/scripts/create-inserted-table.sh",
             "problemMatcher": []
         },
         {
-            "label": "PC03 Postgres Consumer Delete inserted datasets",
+            "label": "PC03 Postgres Consumer Query inderted datasets",
             "type": "shell",
-            "command": "launchers/digital-thread/postgres/delete-inserted-assets.sh",
+            "options": {"cwd": "${workspaceFolder}/central-kg"},
+            "command": " ./postgres/scripts/query-inserted-assets.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "PC04 Postgres Consumer Delete inserted datasets",
+            "type": "shell",
+            "options": {"cwd": "${workspaceFolder}/central-kg"},
+            "command": " ./postgres/scripts/delete-inserted-assets.sh",
             "problemMatcher": []
         },
         {
@@ -106,9 +116,9 @@
         {
             "label": "GC01 Consumer GraphDB Start ",
             "type": "shell",
-            "options": {"cwd": "${workspaceFolder}/central-kg/graphdb"},
+            "options": {"cwd": "${workspaceFolder}/central-kg"},
             "runOptions": {},
-            "command": "docker compose up",
+            "command": "docker compose up central-platform-graphdb",
             "problemMatcher": []
         },
         {
@@ -128,9 +138,9 @@
         {
             "label": "GC04 Consumer GraphDB Stop",
             "type": "shell",
-            "options": {"cwd": "${workspaceFolder}/central-kg/graphdb"},
+            "options": {"cwd": "${workspaceFolder}/central-kg"},
             "runOptions": {},
-            "command": "docker compose down",
+            "command": "docker compose down central-platform-graphdb",
             "problemMatcher": []
         },
         {
