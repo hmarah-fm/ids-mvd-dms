@@ -24,7 +24,7 @@ DATA_CONSUMER=$(jq -n --arg pem "$PEM_CONSUMER" '{
                 "id": "consumer-credentialservice-1"
              },
              {
-                "type": "ProtocolEndpoint",
+                "type": "DataspaceConnector",
                 "serviceEndpoint": "http://localhost:8082/api/dsp",
                 "id": "consumer-dsp"
              }
@@ -87,7 +87,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
                  "id": "provider-credentialservice-1"
               },
               {
-                "type": "ProtocolEndpoint",
+                "type": "DataspaceConnector",
                 "serviceEndpoint": "http://localhost:8192/api/dsp",
                 "id": "provider-qna-catalog-dsp"
               }
@@ -143,7 +143,7 @@ DATA_PROVIDER=$(jq -n --arg pem "$PEM_PROVIDER" '{
                  "id": "provider-ms-credentialservice-1"
               },
               {
-                "type": "ProtocolEndpoint",
+                "type": "DataspaceConnector",
                 "serviceEndpoint": "http://localhost:8292/api/dsp",
                 "id": "provider-ms-catalog-dsp"
               }

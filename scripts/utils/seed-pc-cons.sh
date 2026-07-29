@@ -15,7 +15,7 @@ DATA_CONSUMER=$(jq -n --arg pem "$PEM_CONSUMER" '{
                 "id": "consumer-credentialservice-1"
              },
              {
-                "type": "ProtocolEndpoint",
+                "type": "DataspaceConnector",
                 "serviceEndpoint": "http://localhost:8082/api/dsp",
                 "id": "consumer-dsp"
              }

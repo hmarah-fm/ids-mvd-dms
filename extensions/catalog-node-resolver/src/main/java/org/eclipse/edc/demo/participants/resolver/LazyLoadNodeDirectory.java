@@ -33,12 +33,12 @@ import java.util.Objects;
  * {@link TargetNodeDirectory} that is initialized with a file, that contains participant DIDs. On the first getAll() request
  * the DIDs are resolved and converted into {@link TargetNode} objects. From then on, they are held in memory and cached.
  * <p>
- * DIDs must contain a {@link org.eclipse.edc.iam.did.spi.document.Service} where the {@link Service#getType()} equals {@code ProtocolEndpoint}
+ * DIDs must contain a {@link org.eclipse.edc.iam.did.spi.document.Service} where the {@link Service#getType()} equals {@code DataspaceConnector}
  */
 public class LazyLoadNodeDirectory implements TargetNodeDirectory {
     private static final TypeReference<Map<String, String>> MAP_TYPE = new TypeReference<>() {
     };
-    private static final String PROTOCOL_ENDPOINT = "ProtocolEndpoint";
+    private static final String PROTOCOL_ENDPOINT = "DataspaceConnector";
 
     private final ObjectMapper mapper;
     private final File participantListFile;
