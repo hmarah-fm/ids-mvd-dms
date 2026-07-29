@@ -7,6 +7,77 @@
   },
   "item": [
     {
+      "name": "000 Seed Standalone Federated Catalog",
+      "item": [
+        {
+          "name": "000-Consumer-Set Secret",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// get the policy id of \"asset-1\" and save it as an environment variable",
+                  "if(pm.response.code < 300 && pm.response.code >= 200){",
+                  "    if(pm.response.json().length > 0){",
+                  "        const rdf = pm.response.json()[0][\"dcat:catalog\"][0][\"dcat:dataset\"]",
+                  "        //const rdf = dcat_datasets.find((asset) => asset[\"@id\"] == \"request-rdf-service-sparql\")",
+                  "        pm.collectionVariables.set(\"POLICY_ID_RDF\", rdf[\"odrl:hasPolicy\"][\"@id\"]);",
+                  "    }",
+                  "}",
+                  "",
+                  "pm.test(\"Status code is >=200 and <300\", function () {",
+                  "    pm.expect(pm.response.code < 300 && pm.response.code >= 200).to.be.true",
+                  "});",
+                  "pm.test(\"Policy id for request-rdf-service-sparql is set\", function(){",
+                  "    pm.expect(pm.collectionVariables.get(\"POLICY_ID_RDF\")).not.to.be.undefined",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@context\": {\n    \"edc\": \"https://w3id.org/edc/v0.0.1/ns/\"\n  },\n  \"@type\": \"https://w3id.org/edc/v0.0.1/ns/Secret\",\n  \"@id\": \"did:web:localhost%3A7083-sts-client-secret\",\n  \"https://w3id.org/edc/v0.0.1/ns/value\": \"0VkCfWDL1uAmM5tB\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{STANDALONE_CATALOG_API_CATALOG}}/v1alpha/catalog/query",
+              "host": [
+                "{{STANDALONE_CATALOG_API_CATALOG}}"
+              ],
+              "path": [
+                "v1alpha",
+                "catalog",
+                "query"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "000-Issuer-Credential Service",
       "item": [
         {
@@ -505,7 +576,46 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "112-Get Consumer Credentials",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{CS_URL}}/api/identity/v1alpha/credentials",
+                  "host": [
+                    "{{CS_URL}}"
+                  ],
+                  "path": [
+                    "api",
+                    "identity",
+                    "v1alpha",
+                    "credentials"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 15 Jul 2026 13:14:16 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2602"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"participantContextId\": \"did:web:localhost%3A7083:consumer\",\n        \"id\": \"8f1bf6ab-9269-438d-b22d-1b624e7b91fe\",\n        \"timestamp\": 1784121248090,\n        \"issuerId\": \"did:web:localhost%3A10100\",\n        \"holderId\": \"did:web:localhost%3A7083:consumer\",\n        \"metadata\": {\n            \"credentialObjectId\": \"demo-credential-def-1\"\n        },\n        \"state\": 500,\n        \"timeOfLastStatusUpdate\": null,\n        \"issuancePolicy\": null,\n        \"reissuancePolicy\": null,\n        \"verifiableCredential\": {\n            \"rawVc\": \"eyJraWQiOiJkaWQ6d2ViOmxvY2FsaG9zdCUzQTEwMTAwI2tleS0xIiwiYWxnIjoiRWQyNTUxOSJ9.eyJzdWIiOiJkaWQ6d2ViOmxvY2FsaG9zdCUzQTcwODM6Y29uc3VtZXIiLCJuYmYiOjE3ODQxMjEyNDcsImlzcyI6ImRpZDp3ZWI6bG9jYWxob3N0JTNBMTAxMDAiLCJleHAiOjE3OTQxMjEyNDcsImlhdCI6MTc4NDEyMTI0OCwidmMiOnsiaXNzdWFuY2VEYXRlIjoiMjAyNi0wNy0xNVQxMzoxNDowNy45OTMxNTg1MzdaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsibWVtYmVyc2hpcCI6eyJtZW1iZXJzaGlwVHlwZSI6IkZ1bGxNZW1iZXIiLCJ3ZWJzaXRlIjoid3d3LnF1aXp6cXVhenouY29tIiwiY29udGFjdCI6ImZpenouYnV6ekBxdWl6enF1YXp6LmNvbSIsInNpbmNlIjoiMjAyMy0wMS0wMVQwMDowMDowMFoifX0sImlkIjoiMTk4MWI4NTQtZTc5OC00ODRiLWFkNzctODlkMTE0NjNhYjk3IiwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIk1lbWJlcnNoaXBDcmVkZW50aWFsIl0sIkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sImlzc3VlciI6ImRpZDp3ZWI6bG9jYWxob3N0JTNBMTAxMDAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjYtMTEtMDhUMDc6MDA6NDcuOTkzMTYxMTM3WiIsImNyZWRlbnRpYWxTdGF0dXMiOnsic3RhdHVzUHVycG9zZSI6InJldm9jYXRpb24iLCJzdGF0dXNMaXN0SW5kZXgiOjEsImlkIjoiYzBmNDJlMTktMTZiNy00MTNlLWI4ZGMtYzQyNzhkOGQwZjBjIiwidHlwZSI6IkJpdHN0cmluZ1N0YXR1c0xpc3RFbnRyeSIsInN0YXR1c0xpc3RDcmVkZW50aWFsIjoiaHR0cDovL2xvY2FsaG9zdDo5OTk5L3N0YXR1c2xpc3QvM2RlYmVlOTEtYjM5ZS00YjdkLWJhMmYtMmM2NzE0NDA1YmEzIn19LCJqdGkiOiI4ZjFiZjZhYi05MjY5LTQzOGQtYjIyZC0xYjYyNGU3YjkxZmUifQ.XysMH8BfIL3sGe0J-sgCK8UzPw7w2uADIN6H7ZuMIQvbfU-1moqiQ_x9oKkbehk7MnhbkyxGyNrVUFA17tlBAg\",\n            \"format\": \"VC1_0_JWT\",\n            \"credential\": {\n                \"credentialSubject\": [\n                    {\n                        \"id\": \"did:web:localhost%3A7083:consumer\",\n                        \"membership\": {\n                            \"membershipType\": \"FullMember\",\n                            \"website\": \"www.quizzquazz.com\",\n                            \"contact\": \"fizz.buzz@quizzquazz.com\",\n                            \"since\": \"2023-01-01T00:00:00Z\"\n                        }\n                    }\n                ],\n                \"id\": \"8f1bf6ab-9269-438d-b22d-1b624e7b91fe\",\n                \"type\": [\n                    \"VerifiableCredential\",\n                    \"MembershipCredential\"\n                ],\n                \"issuer\": {\n                    \"id\": \"did:web:localhost%3A10100\",\n                    \"additionalProperties\": {}\n                },\n                \"issuanceDate\": \"2026-07-15T13:14:07.993158537Z\",\n                \"expirationDate\": \"2026-11-08T07:00:47.993161137Z\",\n                \"credentialStatus\": [\n                    {\n                        \"id\": \"c0f42e19-16b7-413e-b8dc-c4278d8d0f0c\",\n                        \"type\": \"BitstringStatusListEntry\",\n                        \"statusPurpose\": \"revocation\",\n                        \"statusListIndex\": 1,\n                        \"statusListCredential\": \"http://localhost:9999/statuslist/3debee91-b39e-4b7d-ba2f-2c6714405ba3\"\n                    }\n                ],\n                \"description\": null,\n                \"name\": \"did:web:localhost%3A7083:consumer\",\n                \"dataModelVersion\": \"V_1_1\",\n                \"credentialSchema\": []\n            }\n        }\n    }\n]"
+            }
+          ]
         },
         {
           "name": "114-Get Provider Qna Credentials",
@@ -2660,87 +2770,7 @@
   ],
   "variable": [
     {
-      "key": "PROVIDER_QNA_URL",
-      "value": "http://localhost:8191"
-    },
-    {
-      "key": "CONSUMER_URL",
-      "value": "http://localhost:8081"
-    },
-    {
-      "key": "CS_URL",
-      "value": "http://localhost:7082"
-    },
-    {
-      "key": "PROVIDER_QNA_ID",
-      "value": "did:web:localhost%3A7093"
-    },
-    {
-      "key": "CONSUMER_CATALOG_QUERY_URL",
-      "value": "http://localhost:8084"
-    },
-    {
-      "key": "PROVIDER_QNA_DSP_URL",
-      "value": "http://localhost:8192"
-    },
-    {
-      "key": "PROVIDER_PUBLIC_API",
-      "value": "http://localhost:12001"
-    },
-    {
       "key": "AUTHORIZATION",
-      "value": ""
-    },
-    {
-      "key": "ISSUER_CONTEXT_ID",
-      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0ExMDEwMA=="
-    },
-    {
-      "key": "ISSUER_ADMIN_API_TOKEN",
-      "value": "c3VwZXItdXNlcg==.c3VwZXItc2VjcmV0LWtleQo="
-    },
-    {
-      "key": "ISSUER_ADMIN_URL",
-      "value": "http://localhost:10013"
-    },
-    {
-      "key": "CONSUMER_ID",
-      "value": "did:web:localhost%3A7083"
-    },
-    {
-      "key": "CONSUMER_NAME",
-      "value": "MVD Consumer Participant"
-    },
-    {
-      "key": "PROVIDER_QNA_NAME",
-      "value": "MVD Provider Participant"
-    },
-    {
-      "key": "ISSUER_DID",
-      "value": "did:web:localhost%3A10100"
-    },
-    {
-      "key": "REQUEST_ID",
-      "value": ""
-    },
-    {
-      "key": "CONSUMER_PARTICIPANT_ID_BASE64",
-      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDgz"
-    },
-    {
-      "key": "PROVIDER_QNA_IDENTITY_URL",
-      "value": "http://localhost:7092"
-    },
-    {
-      "key": "PROVIDER_QNA_PARTICIPANT_ID_BASE64",
-      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDkz"
-    },
-    {
-      "key": "ISSUER_DID_BASE64",
-      "value": ""
-    },
-    {
-      "key": "POLICY_ID_RDF",
       "value": ""
     },
     {
@@ -2756,23 +2786,104 @@
       "value": ""
     },
     {
+      "key": "QUOTE_AUTHORIZATION_RDF",
+      "value": ""
+    },
+    {
       "key": "TRANSFER_PROCESS_ID_RDF",
       "value": ""
+    },
+    {
+      "key": "REQUEST_ID",
+      "value": ""
+    },
+    {
+      "key": "POLICY_ID_RDF",
+      "value": ""
+    },
+    {
+      "key": "ISSUER_CONTEXT_ID",
+      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0ExMDEwMA=="
+    },
+    {
+      "key": "ISSUER_ADMIN_API_TOKEN",
+      "value": "c3VwZXItdXNlcg==.c3VwZXItc2VjcmV0LWtleQo="
+    },
+    {
+      "key": "ISSUER_DID_BASE64",
+      "value": ""
+    },
+    {
+      "key": "ISSUER_DID",
+      "value": "did:web:localhost%3A10100"
+    },
+    {
+      "key": "ISSUER_ADMIN_URL",
+      "value": "http://localhost:10013"
+    },
+    {
+      "key": "CS_URL",
+      "value": "http://localhost:7082"
+    },
+    {
+      "key": "CONSUMER_NAME",
+      "value": "MVD Consumer Participant"
+    },
+    {
+      "key": "CONSUMER_ID",
+      "value": "did:web:localhost%3A7083"
+    },
+    {
+      "key": "CONSUMER_PARTICIPANT_ID_BASE64",
+      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDgz"
+    },
+    {
+      "key": "CONSUMER_URL",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "CONSUMER_CATALOG_QUERY_URL",
+      "value": "http://localhost:8084"
     },
     {
       "key": "STANDALONE_CATALOG_API_CATALOG",
       "value": ""
     },
     {
-      "key": "PROVIDER_MS_URL",
-      "value": ""
+      "key": "PROVIDER_QNA_NAME",
+      "value": "MVD Provider Participant"
     },
     {
-      "key": "PROVIDER_MS_DSP_URL",
-      "value": ""
+      "key": "PROVIDER_QNA_ID",
+      "value": "did:web:localhost%3A7093"
+    },
+    {
+      "key": "PROVIDER_QNA_IDENTITY_URL",
+      "value": "http://localhost:7092"
+    },
+    {
+      "key": "PROVIDER_QNA_URL",
+      "value": "http://localhost:8191"
+    },
+    {
+      "key": "PROVIDER_QNA_DSP_URL",
+      "value": "http://localhost:8192"
+    },
+    {
+      "key": "PROVIDER_PUBLIC_API",
+      "value": "http://localhost:12001"
+    },
+    {
+      "key": "PROVIDER_QNA_PARTICIPANT_ID_BASE64",
+      "value": "ZGlkOndlYjpsb2NhbGhvc3QlM0E3MDkz",
+      "disabled": true
     },
     {
       "key": "PROVIDER_MS_ID",
+      "value": ""
+    },
+    {
+      "key": "PROVIDER_MS_PARTICIPANT_ID_BASE64",
       "value": ""
     },
     {
@@ -2784,11 +2895,11 @@
       "value": ""
     },
     {
-      "key": "PROVIDER_MS_PARTICIPANT_ID_BASE64",
+      "key": "PROVIDER_MS_URL",
       "value": ""
     },
     {
-      "key": "QUOTE_AUTHORIZATION_RDF",
+      "key": "PROVIDER_MS_DSP_URL",
       "value": ""
     }
   ]
