@@ -8,7 +8,7 @@ The datasets can be found in the Teams folder under WP4 and should be included i
 Additionally, the DEMO postman collection runs the registration of these datasets where:
 dataset_1 is registered by the connector QNA and dataset_2 is registered by the connector Manufacturing. 
 
-This DEMO setup, uses the [property file](config/demo_dms.json) as the properties for the digital thread and should be set in the [digital-thread.env](deployment/assets/env/digital_thread.env).
+This DEMO setup, uses the [property file](../deployment/config/demo_dms.json) as the properties for the digital thread and should be set in the [digital-thread.env](../deployment/assets/env/digital_thread.env).
 
 ## Architecture
 
@@ -44,11 +44,11 @@ The providers are the dataspace stakeholders, featuring these components
 - Retrieved from unimaas repo [MSC-Ontology-RDF](https://github.com/UniMaaS-project-eu/MSC-Ontology-RDF)
 - Copied in [central-kg repo](https://github.com/Flanders-Make-vzw/unimaas-central-kg) at `graphdb/config/MSC-ontology-1.2.0.ttl` 
 - completed with owl statements for the `sc:nextStep` predicate
-  - from file [next-steps.ttl](central-kg/graphdb/config/next-steps.ttl)
+  - from file [next-steps.ttl](../central-kg/graphdb/config/next-steps.ttl)
   - at lines from 15 to 27
 - used when creating the graphdb repository `centralKG`  
-  - see config file [repo-config.ttl](central-kg/graphdb/config/repo-config.ttl)
-  - see script file [init-repo.sh](central-kg/graphdb/scripts/init-repo.sh)
+  - see config file [repo-config.ttl](../central-kg/graphdb/config/repo-config.ttl)
+  - see script file [init-repo.sh](../central-kg/graphdb/scripts/init-repo.sh)
 
 #### Dataset 1
 
