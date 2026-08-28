@@ -70,7 +70,6 @@ Provided by provider QNA, containing 'Internal data':
 - provided as file based rdf dataset 
   - see postman collection, folders `4**`
 
-
 ### Preliminaries
 - make those services are running
   - keycloak
