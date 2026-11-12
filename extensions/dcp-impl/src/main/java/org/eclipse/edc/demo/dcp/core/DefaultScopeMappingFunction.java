@@ -14,6 +14,7 @@
 
 package org.eclipse.edc.demo.dcp.core;
 
+import org.eclipse.edc.policy.context.request.spi.RequestCatalogPolicyContext;
 import org.eclipse.edc.policy.context.request.spi.RequestPolicyContext;
 import org.eclipse.edc.policy.engine.spi.PolicyValidatorRule;
 import org.eclipse.edc.policy.model.Policy;
@@ -23,9 +24,15 @@ import java.util.Set;
 
 public class DefaultScopeMappingFunction implements PolicyValidatorRule<RequestPolicyContext> {
     private final Set<String> defaultScopes;
+    private final boolean enableDataProcessorForCatalog;
 
     public DefaultScopeMappingFunction(Set<String> defaultScopes) {
+        this(defaultScopes, false);
+    }
+
+    public DefaultScopeMappingFunction(Set<String> defaultScopes, boolean enableDataProcessorForCatalog) {
         this.defaultScopes = defaultScopes;
+        this.enableDataProcessorForCatalog = enableDataProcessorForCatalog;
     }
 
     @Override
@@ -35,6 +42,9 @@ public class DefaultScopeMappingFunction implements PolicyValidatorRule<RequestP
         var existingScope = rq.getScopes();
         var newScopes = new HashSet<>(defaultScopes);
         newScopes.addAll(existingScope);
+        if (enableDataProcessorForCatalog && requestPolicyContext instanceof RequestCatalogPolicyContext) {
+            newScopes.add("org.eclipse.edc.vc.type:DataProcessorCredential:read");
+        }
         requestScopeBuilder.scopes(newScopes);
         return true;
     }

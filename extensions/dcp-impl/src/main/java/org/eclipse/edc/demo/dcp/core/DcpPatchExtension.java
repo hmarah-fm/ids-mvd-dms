@@ -71,7 +71,8 @@ public class DcpPatchExtension implements ServiceExtension {
 
         // register a default scope provider
         var contextMappingFunction = new DefaultScopeMappingFunction(
-                Set.of("org.eclipse.edc.vc.type:MembershipCredential:read"));
+                Set.of("org.eclipse.edc.vc.type:MembershipCredential:read"),
+                context.getConfig().getBoolean("unimaas.enable.extra.vp.catalogrequest", false));
 
         policyEngine.registerPostValidator(RequestCatalogPolicyContext.class, contextMappingFunction::apply);
         policyEngine.registerPostValidator(RequestContractNegotiationPolicyContext.class, contextMappingFunction::apply);
