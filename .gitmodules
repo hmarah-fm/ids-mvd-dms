@@ -9,4 +9,4 @@
 	url = https://github.com/Flanders-Make-vzw/standalone-federated-catalog.git
 [submodule "central-kg"]
 	path = central-kg
-	url = https://github.com/Flanders-Make-vzw/unimaas-central-kg
+	url = https://github.com/hmarah-fm/central-kg.git
