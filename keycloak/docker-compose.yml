@@ -13,11 +13,13 @@ services:
     restart: always
     volumes:
       - keycloak-volume:/opt/keycloak/data
+      - ./realm-import:/opt/keycloak/data/import:ro
     environment:
       - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
       - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
     command:
       - start-dev
+      - --import-realm
 
 volumes:
   keycloak-volume:
