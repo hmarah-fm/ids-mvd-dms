@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # --- Configuration ---
 FUSEKI_URL="http://localhost:3032"
@@ -21,7 +22,7 @@ fi
 
 echo "Loading $FILE into Fuseki dataset '$DATASET'..."
 
-curl -u "$USERNAME:$PASSWORD" \
+curl --fail --show-error -u "$USERNAME:$PASSWORD" \
      -X PUT \
      -H "Content-Type: text/turtle" \
      --data-binary @"$FILE" \
