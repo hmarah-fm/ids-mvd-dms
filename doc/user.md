@@ -1,54 +1,28 @@
-# User documentation
+# User Guide
 
-## Prerequisites
+Use the [end-to-end DMS demo guide](./demo.md) for the complete startup order, component roles, configuration, Postman flows, data checks, and troubleshooting. It covers the current standalone GraphDB/Postgres startup path and calls out which WP4 datasets are not included in this checkout.
 
-- build the application
-  - task B99 Build All
-- import the postman collection [EDC-Request-RDF-Service-local](../deployment/postman/EDC-Request-RDF-Service-local.postman_collection.json) 
+## Common User Flow
 
-## Preliminaries
+1. Build the services and start the local dependencies as described in the [demo guide](./demo.md#run-the-demo).
+2. Import [`EDC-Request-RDF-Service-local`](../deployment/postman/EDC-Request-RDF-Service-local.postman_collection.json) into Postman and configure local endpoint and participant variables.
+3. Run the identity/credential steps, then the file-based and SPARQL-based provider/consumer asset flows.
+4. Query the standalone federated catalog and confirm the expected provider assets are visible.
+5. Start the digital thread and verify transferred assets in Postgres and RDF in GraphDB.
 
-For the simple flow (create/get assets)
-- start keycloak
-  - follow [procedure](https://github.com/UniMaaS-project-eu/ed-node/tree/master/tests/keycloak)
-  - docker compose up
-  - open browser on 5080
-  - add client did:web:localhost%3A7093 (provider qna)
-  - add client did:web:localhost%3A7193 (provider qna)
-  - set the client secret (consumer)
-    - JHbEb2C1Dsj0OWmKlnrg7Pv5uIXaWMpQ
-- start the provider fuseki 
-  - make sure the databases folder is writable by docker
-  - start the server: task FP01
-  - load the server: task FP02
-  - check:open a browser on http://localhost:3032
-- start the consumer fuseki
-  - start the server: task FC01
-  - check:open a browser on http://localhost:3031
+The checked-in provider example is for local smoke testing. The Adient pilot datasets must be obtained from their authorized project source; they are not included here. Never use or share credentials copied from old documentation. Generate local secrets and keep them out of source control and Postman exports.
 
-## Starting the environment, consume an RDF dataset exposed to the DS
+## Postman Flow
 
-Do the following steps:
-- start all edc processes (but the digital thread): task ST99
-- do the seeding task ST50
-- create the consumer/provider credentials: postman folder 000, 100, 200
-- create a provider file based asset: postman folder 410
-- create a provider sparql based asset: postman folder 510
-- request from consumer : postman folder 420
-  - check: postman request 428 must return RDF data
-- request from consumer : postman folder 520
-  - check: postman request 528 must return RDF data
-- check the standalonce federated catalog
-  - postman collection request 601: get query through catalog api
+The collection is organized into these high-level steps:
 
-## Run the digital thread agent
+- `000 Seed Standalone Federated Catalog` and `000-Issuer-Credential Service`
+- `100-Make-IDHub-VerifiableCredential`
+- `400-Request-RDF-Service-Flow (File Asset)`
+- `500-Request-RDF-Service-Flow (Sparql Endpoint Asset)`
+- `600-Standalone-Federated-Catalog-Server`
+- `700-Check`
 
-Do the following steps:
-- start the consumer postgres: task PC01
-- optional: empty the inserted datasets table: task PC03
-- start the agent: task ST60
-- check:
-  - query the inserted datasets: task PC02
-  - query the consumer triple store: consumer graphdb instance
+Run provider requests before their corresponding consumer requests. The full request names and expected checks are in the imported collection; use the exact DIDs and endpoints from the local configuration files.
 
 

@@ -25,6 +25,15 @@ For developer: [doc](./doc/developer.md)
 
 About the demo: [doc](./doc/demo.md)
 
+For an interrupted local demo, [the recovery procedure](./doc/demo.md#recover-an-interrupted-demo)
+recreates demo identities, reissues credentials, aligns the Keycloak directory, and registers file/SPARQL smoke assets.
+It preserves database and RDF data; identity reset is explicit and replaces the old demo credentials.
+
+The standalone catalog uses the current mounted connectorcp Vault token and
+honors `UNIMAAS_ENABLE_EXTRA_VP_CATALOGREQUEST` to authorize DataProcessor
+credentials when crawling providers. See the [catalog deployment and troubleshooting
+guide](./central-kg/README.md#federated-catalog) for image rebuilds and empty-cache diagnostics.
+
 ## Features
 
 This repository implements the following components and features.
