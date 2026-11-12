@@ -4,5 +4,6 @@
     "n3Execute.reasoner": "eye",
     "excalidraw.theme": "light",
     "workbench.colorTheme": "Dark 2026",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "python.terminal.useEnvFile": true
 }
